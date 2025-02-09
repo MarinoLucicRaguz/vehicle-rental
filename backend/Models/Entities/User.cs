@@ -1,18 +1,9 @@
-﻿using System.Data;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace backend.Models.Entities
 {
-    public class User
+    public class User : IdentityUser<int>
     {
-        public int Id { get; set; }
-
-        // Unique username for login
-        public string Username { get; set; } = string.Empty;
-
-        // Store hashed password
-        public string PasswordHash { get; set; } = string.Empty;
-
-        // Optional: Preferred timezone (e.g., "Europe/Paris")
         public string? PreferredTimezone { get; set; }
 
         // Timestamps stored in UTC
@@ -20,8 +11,8 @@ namespace backend.Models.Entities
         public DateTime UpdatedAt { get; set; }
 
         // Each user has exactly one role.
-        public int RoleId { get; set; }
-        public Role Role { get; set; } = null!;
+        public int? RoleId { get; set; }
+        public Role? Role { get; set; } = null;
 
     }
 }

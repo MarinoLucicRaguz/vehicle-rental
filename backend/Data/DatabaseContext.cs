@@ -1,9 +1,10 @@
 ﻿using backend.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Data
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : IdentityDbContext<User, Role, int>
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -13,6 +14,11 @@ namespace backend.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Role>()
+               .HasMany(r => r.Users)
+               .WithOne(u => u.Role)
+               .HasForeignKey(u => u.RoleId);
 
             modelBuilder.Entity<ReservationVehicle>().HasKey(rv => new { rv.ReservationId, rv.VehicleId });
         }
