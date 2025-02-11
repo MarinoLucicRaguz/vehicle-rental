@@ -3,23 +3,17 @@
     public class RentalOption
     {
         public int Id { get; set; }
-
-        // Each rental option is linked to a vehicle.
-        public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; } = null!;
-
-        // e.g. "Daily Rental", "Weekend Special"
-        public string OptionName { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
-
-        // Pricing details
-        public decimal Price { get; set; }
-        public string Currency { get; set; } = "EUR";
-
-        // e.g. "hour", "day", "week"
-        public string? RentalPeriod { get; set; }
-        // ako je rental period hour a ovo 2 to znaci da je renta na 2h
-        public decimal? Quantity { get; set; }
+        public decimal Price { get; set; } = 0m;
+        public int Duration { get; set; } 
+        public int? MinVehicleNumber { get; set; }
+        public int? MaxVehicleNumber { get; set; }
+        public int? MinPeopleNumber { get; set; }
+        public int? MaxPeopleNumber { get; set; }
+        public bool PricePerPerson { get; set; } = false;
+        public bool PricePerVehicle { get; set; } = false;
+        public bool Available { get; set; } = false;
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
