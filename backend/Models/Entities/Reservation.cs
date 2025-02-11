@@ -16,7 +16,6 @@
         public string? PaymentStatus { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
         public int RentalOptionId { get; set; }
         public RentalOption RentalOption { get; set; } = new RentalOption();
         public string? ExternalReservationId { get; set; }
@@ -24,7 +23,6 @@
         public User? User { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; } = new Location();
-        // Navigation property for the many-to-many relationship with Vehicles.
         public ICollection<ReservationVehicle> ReservationVehicles { get; set; } = new List<ReservationVehicle>();
     }
 }

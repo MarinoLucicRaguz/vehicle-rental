@@ -9,14 +9,9 @@
         public string? State { get; set; }
         public string? Country { get; set; }
         public string? PostalCode { get; set; }
-
-        // IANA timezone identifier, e.g., "America/New_York"
         public string? Timezone { get; set; }
-
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        // Navigation properties
         public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
         public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }

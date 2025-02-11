@@ -14,7 +14,6 @@
         public bool PricePerPerson { get; set; } = false;
         public bool PricePerVehicle { get; set; } = false;
         public bool Available { get; set; } = false;
-
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
