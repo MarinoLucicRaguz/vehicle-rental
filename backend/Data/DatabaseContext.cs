@@ -15,6 +15,9 @@ namespace backend.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Location>()
+                .HasIndex(l => l.Name).IsUnique();
+
             modelBuilder.Entity<Vehicle>()
                 .HasOne(v => v.DefaultLocation)
                 .WithMany(l => l.Vehicles)

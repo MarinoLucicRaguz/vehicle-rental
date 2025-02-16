@@ -18,7 +18,7 @@ namespace backend.Services
             return await _vehicleRepository.GetAllVehicles();
         }
 
-        public async Task<Vehicle> GetVehicleById(int id)
+        public async Task<Vehicle?> GetVehicleById(int id)
         {
             return await _vehicleRepository.GetVehicleById(id);
         }
