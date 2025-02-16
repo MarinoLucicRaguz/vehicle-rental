@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Scalar.AspNetCore;
 using System.Reflection;
 using System.Text;
 
@@ -58,7 +59,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 
-    app.ApplyMigrations();
+    app.MapScalarApiReference();
+
+    //app.ApplyMigrations();
 }
 
 app.UseHttpsRedirection();
