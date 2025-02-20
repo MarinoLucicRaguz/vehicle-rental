@@ -1,9 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-
-//enableat NODE_TLS_REJECT_UNAUTHORIZED=0
-//  u produkciji
+import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export const login = async (prevState: any, formData: FormData) => {
   const cookieStore = await cookies();
@@ -22,10 +21,25 @@ export const login = async (prevState: any, formData: FormData) => {
     const req = await fetch(`${process.env.API}/api/auth/login`, reqOptions);
     const response = await req.json();
 
-    cookieStore.set("token", response.token);
+    cookieStore.set("token", response.token, {
+      httpOnly: true, // More secure, prevents JS access
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 24 * 60 * 60, // 1 day
+    });
 
-    return { message: "Logged in successfully" };
+    return NextResponse.redirect(
+      new URL("/home", process.env.NEXT_PUBLIC_BASE_URL)
+    );
   } catch (error: any) {
     return { message: error.message || "Network error" };
   }
+};
+
+export const logout = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("token");
+
+  return NextResponse.redirect("/login");
 };

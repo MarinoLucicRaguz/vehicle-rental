@@ -61,6 +61,12 @@ if (app.Environment.IsDevelopment())
 
     app.MapScalarApiReference();
 
+    var httpClientHandler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+    };
+
+    var httpClient = new HttpClient(httpClientHandler);
     //app.ApplyMigrations();
 }
 

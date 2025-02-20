@@ -26,18 +26,17 @@ namespace backend.Helpers
 
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email ?? ""),
-                new Claim(ClaimTypes.Name, user.UserName ?? "")
+                new Claim(nameof(User.Id), user.Id.ToString()),
+                new Claim(nameof(User.UserName), user.UserName ?? ""),
             };
 
-            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            claims.AddRange(roles.Select(role => new Claim(nameof(User.Role), role)));
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JwtSettings:Issuer"],
                 audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.UtcNow.AddHours(24),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
