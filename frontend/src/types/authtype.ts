@@ -1,6 +1,6 @@
 export type LoginDTO = {
-  username: string;
-  password: string;
+  UserName: string;
+  Password: string;
 };
 
 export type RegisterDTO = {
