@@ -10,11 +10,7 @@ const defaultHeaders: HeadersInit = {
   "Content-Type": "application/json",
 };
 
-export const apiClient = async <T = any>(
-  endpoint: string,
-  method: RequestMethod,
-  options: RequestOptions = {}
-): Promise<T> => {
+export const apiClient = async <T = any>(endpoint: string, method: RequestMethod, options: RequestOptions = {}): Promise<T> => {
   if (!BASE_URL) {
     throw new Error("API base URL is not defined in env.");
   }
@@ -28,10 +24,7 @@ export const apiClient = async <T = any>(
 
   let computedBody: BodyInit | undefined;
   if (options.body) {
-    computedBody =
-      typeof options.body === "string"
-        ? options.body
-        : JSON.stringify(options.body);
+    computedBody = typeof options.body === "string" ? options.body : JSON.stringify(options.body);
   }
 
   const fetchOptions: RequestInit = {
@@ -43,10 +36,6 @@ export const apiClient = async <T = any>(
 
   try {
     const response = await fetch(url, fetchOptions);
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Error ${response.status}: ${errorText}`);
-    }
     return (await response.json()) as T;
   } catch (error) {
     console.error("apiClient error:", error);
@@ -54,26 +43,14 @@ export const apiClient = async <T = any>(
   }
 };
 
-export const get = <T = any>(endpoint: string, options?: RequestOptions) =>
-  apiClient<T>(endpoint, "GET", options);
+export const get = <T = any>(endpoint: string, options: RequestOptions = {}) => apiClient<T>(endpoint, "GET", options);
 
-export const post = <T = any>(
-  endpoint: string,
-  data: any,
-  options?: RequestOptions
-) => apiClient<T>(endpoint, "POST", { ...options, body: data });
+export const post = <T = any>(endpoint: string, data: any, options: RequestOptions = {}) =>
+  apiClient<T>(endpoint, "POST", { ...options, body: data });
 
-export const put = <T = any>(
-  endpoint: string,
-  data: any,
-  options?: RequestOptions
-) => apiClient<T>(endpoint, "PUT", { ...options, body: data });
+export const put = <T = any>(endpoint: string, data: any, options: RequestOptions = {}) => apiClient<T>(endpoint, "PUT", { ...options, body: data });
 
-export const patch = <T = any>(
-  endpoint: string,
-  data: any,
-  options?: RequestOptions
-) => apiClient<T>(endpoint, "PATCH", { ...options, body: data });
+export const patch = <T = any>(endpoint: string, data: any, options: RequestOptions = {}) =>
+  apiClient<T>(endpoint, "PATCH", { ...options, body: data });
 
-export const del = <T = any>(endpoint: string, options?: RequestOptions) =>
-  apiClient<T>(endpoint, "DELETE", options);
+export const del = <T = any>(endpoint: string, options: RequestOptions = {}) => apiClient<T>(endpoint, "DELETE", options);

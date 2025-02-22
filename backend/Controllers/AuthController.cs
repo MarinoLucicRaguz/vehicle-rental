@@ -1,12 +1,13 @@
 ﻿using backend.Models.DTOs.Auth;
 using backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace backend.Controllers
 {
     [ApiController]
     [Route("api/auth")]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseApiController
     {
         private readonly IAuthService _authService;
         
@@ -20,9 +21,9 @@ namespace backend.Controllers
         {
             var result = await _authService.RegisterAsync(model);
             if (result != null)
-                return BadRequest(result);
+                return ApiBadRequest<object>(result);
 
-            return Ok("User registered successfully.");
+            return ApiOk<object>(null, "User registered successfully.");
         }
 
         [HttpPost(nameof(Login))]
@@ -30,9 +31,24 @@ namespace backend.Controllers
         {
             var token = await _authService.LoginAsync(model);
             if (token == null)
-                return Unauthorized("Invalid credentials.");
+                return ApiUnauthorized<object>("Invalid credentials.");
 
-            return Ok(new { Token = token });
+            return ApiOk(new { Token = token }, "Login successful.");
+        }
+
+        [HttpPost(nameof(ValidateToken))]
+        public async Task<IActionResult> ValidateToken([FromBody] string token)
+        {
+            try
+            {
+                ClaimsPrincipal principal = await _authService.ValidateTokenAsync(token);
+                var claims = principal.Claims.Select(c => new { c.Type, c.Value });
+                return ApiOk(new { Valid = true, Claims = claims });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return ApiUnauthorized<object>(ex.Message);
+            }
         }
     }
 }

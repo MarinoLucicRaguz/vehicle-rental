@@ -1,19 +1,5 @@
 import { post } from "@/lib/apiClient";
-
-interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-interface LoginResponse {
-  token: string;
-}
-
-interface RegisterRequest extends LoginRequest {}
-
-interface RegisterResponse {
-  message: string;
-}
+import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, ValidateResponse } from "@/types/AuthTypes";
 
 export const authService = {
   async login(data: LoginRequest): Promise<LoginResponse> {
@@ -22,5 +8,9 @@ export const authService = {
 
   async register(data: RegisterRequest): Promise<RegisterResponse> {
     return await post<RegisterResponse>("/api/auth/register", data);
+  },
+
+  async validate(token: string): Promise<ValidateResponse> {
+    return await post<ValidateResponse>("/api/auth/validatetoken", JSON.stringify(token));
   },
 };

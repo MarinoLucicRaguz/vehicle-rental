@@ -4,6 +4,7 @@ using backend.Models.Entities;
 using backend.Repositories.Interfaces;
 using backend.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace backend.Services
 {
@@ -23,6 +24,9 @@ namespace backend.Services
         {
             if (await _userRepository.GetUserByUsernameAsync(model.UserName) != null)
                 return "Username is already in use.";
+
+            if (!model.Password.Equals(model.ConfirmPassword))
+                return "Passwords don't match.";
 
             var user = new User
             {
@@ -45,6 +49,16 @@ namespace backend.Services
                 return null;
 
             return await _jwtTokenHelper.GenerateJwtToken(user);
+        }
+
+        public Task<ClaimsPrincipal> ValidateTokenAsync(string token)
+        {
+            var principal = _jwtTokenHelper.ValidateJwtToken(token);
+            if (principal == null)
+            {
+                throw new UnauthorizedAccessException("Invalid token.");
+            }
+            return Task.FromResult(principal);
         }
     }
 }
