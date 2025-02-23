@@ -14,7 +14,7 @@ export async function loginAction(formData: FormData) {
   }
 
   const { username, password } = parseResult.data;
-
+  let loginSuccess = false;
   try {
     const response = await authService.login({ username, password });
     if (!response.success) {
@@ -30,12 +30,13 @@ export async function loginAction(formData: FormData) {
         path: "/",
         maxAge: 24 * 60 * 60,
       });
+      loginSuccess = true;
     } else {
       throw new Error("An error occurred during login.");
     }
   } catch (error: any) {
     return { error: error.message || "An error occurred during login." };
   } finally {
-    redirect("/");
+    if (loginSuccess) redirect("/");
   }
 }

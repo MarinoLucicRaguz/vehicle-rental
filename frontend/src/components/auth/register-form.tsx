@@ -31,7 +31,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
               <div className="grid gap-2">
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <Input id="confirmPassword" type="password" placeholder="Repeat your password..." required {...register("confirmPassword")} />
-                {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
+                {errors.confirmPassword && <span className="text-red-500 text-sm">{errors.confirmPassword.message}</span>}
               </div>
               <Button type="submit" className="w-full">
                 {isSubmitting ? "Signing up..." : "Sign up"}

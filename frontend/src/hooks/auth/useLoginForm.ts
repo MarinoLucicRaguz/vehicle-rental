@@ -21,7 +21,7 @@ export function useLoginForm() {
       formData.append("username", data.username);
       formData.append("password", data.password);
       const result = await loginAction(formData);
-      if ("error" in result && result.error) {
+      if (result && "error" in result && result.error) {
         setServerError(result.error);
       }
     } catch (error: any) {
