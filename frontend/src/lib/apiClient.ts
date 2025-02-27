@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 export type RequestMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export interface RequestOptions extends Omit<RequestInit, "body"> {
@@ -16,10 +18,11 @@ export const apiClient = async <T = any>(endpoint: string, method: RequestMethod
   }
 
   const url = `${BASE_URL}${endpoint}`;
-
+  const token = (await cookies()).get("token")?.value || "";
   const headers: HeadersInit = {
     ...defaultHeaders,
     ...(options.headers || {}),
+    Authorization: `Bearer ${token}`,
   };
 
   let computedBody: BodyInit | undefined;
@@ -36,7 +39,13 @@ export const apiClient = async <T = any>(endpoint: string, method: RequestMethod
 
   try {
     const response = await fetch(url, fetchOptions);
-    return (await response.json()) as T;
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`API error: ${response.status} ${response.statusText}`, errorText);
+      throw new Error("Network response was not ok");
+    }
+    const text = await response.text();
+    return text ? (JSON.parse(text) as T) : ({} as T);
   } catch (error) {
     console.error("apiClient error:", error);
     throw error;

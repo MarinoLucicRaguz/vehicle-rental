@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { useLoginForm } from "@/hooks/auth/useLoginForm";

@@ -1,4 +1,4 @@
-import { ServiceResponse } from "./serviceResponse";
+import { ServiceResponse } from "./ServiceResponse";
 
 export interface LoginRequest {
   username: string;
