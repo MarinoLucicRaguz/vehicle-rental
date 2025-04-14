@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "mJzlNZSv88WPXvtMmGvrTmO7jp8bt3Ds73zEghj7Y3k=",
+  "Source": "VehicleRentalSystem.WebApi",
+  "BasePath": "_content/VehicleRentalSystem.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
