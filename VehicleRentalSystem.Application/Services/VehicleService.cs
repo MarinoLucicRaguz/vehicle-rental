@@ -5,6 +5,7 @@ using VehicleRentalSystem.Application.Interfaces;
 using VehicleRentalSystem.Domain.Entities;
 using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace VehicleRentalSystem.Application.Services
 {
@@ -44,7 +45,7 @@ namespace VehicleRentalSystem.Application.Services
 
         public async Task<ServiceResponse<List<Vehicle>>> GetAllVehiclesAsync()
         {
-            var vehicles = await _genericRepo.GetAllAsync();
+            var vehicles = await _genericRepo.GetAllAsync(query => query.Include(v => v.Location));
 
             if (vehicles == null)
                 return ApiResponse.Failure<List<Vehicle>>("Pogreška prilikom dohvaćanja vozila.");

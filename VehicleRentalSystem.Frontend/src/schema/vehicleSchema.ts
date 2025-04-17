@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const vehicleSchema = z.object({
-  vehicleType: z.string().nonempty("Tip vozila je obavezan"),
-  registration: z.string().nonempty("Registracija je obavezna"),
+  vehicleType: z.string().nonempty("Tip vozila je obavezan."),
+  registration: z.string().nonempty("Registracija je obavezna."),
   make: z.string().optional(),
   model: z.string().optional(),
   year: z.preprocess(
@@ -24,6 +24,7 @@ export const vehicleSchema = z.object({
   ),
   description: z.string().optional(),
   status: z.boolean(),
+  locationId: z.coerce.number().int(),
 });
 
 export type VehicleInput = z.infer<typeof vehicleSchema>;

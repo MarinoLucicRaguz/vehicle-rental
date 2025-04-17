@@ -1,13 +1,13 @@
 export interface Vehicle {
-  Id: number;
-  VehicleType: string;
-  Make: string;
-  Model: string;
-  Registration: string;
-  Year: number;
-  PeopleCapacity: number | null;
-  FuelCapacity: number | null;
-  FuelConsumption: number | null;
-  Description: number | null;
-  Status: boolean;
+  id: number;
+  vehicleType: string;
+  make: string;
+  model: string;
+  registration: string;
+  year: number;
+  peopleCapacity: number | null;
+  fuelCapacity: number | null;
+  fuelConsumption: number | null;
+  description: number | null;
+  status: boolean;
 }

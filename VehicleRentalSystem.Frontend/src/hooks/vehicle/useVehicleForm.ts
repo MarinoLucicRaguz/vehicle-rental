@@ -20,6 +20,7 @@ export function useVehicleForm(onSuccess?: () => void) {
       fuelConsumption: undefined,
       description: "",
       status: true,
+      locationId: undefined,
     },
   });
 

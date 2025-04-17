@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Vehicle } from "@/types/VehicleTypes";
+import { VehicleType } from "@/types/VehicleTypeTypes";
 
 export const VehicleColumns: ColumnDef<Vehicle>[] = [
   {
@@ -53,7 +54,10 @@ export const VehicleColumns: ColumnDef<Vehicle>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div>{row.getValue("vehicleType")}</div>,
+    cell: ({ row }) => {
+      const vehicleType = row.getValue("vehicleType") as VehicleType;
+      return <div>{vehicleType?.name}</div>;
+    },
     meta: {
       displayName: "Tip vozila",
     },
@@ -131,16 +135,16 @@ export const VehicleColumns: ColumnDef<Vehicle>[] = [
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Otvori meni</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Akcije</DropdownMenuLabel>
             {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(vehicle.Id)}>Copy vehicle ID</DropdownMenuItem> */}
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View details</DropdownMenuItem>
-            <DropdownMenuItem>Edit vehicle</DropdownMenuItem>
+            <DropdownMenuItem>Prikaži detalje</DropdownMenuItem>
+            <DropdownMenuItem>Uredi vozilo</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

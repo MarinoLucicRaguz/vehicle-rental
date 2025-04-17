@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Services
@@ -19,9 +20,16 @@ namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Services
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync(Func<IQueryable<T>, IQueryable<T>>? queryBuilder = null)
         {
-            return await _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+
+            if (queryBuilder != null)
+            {
+                query = queryBuilder(query);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<T> CreateAsync(T entity)

@@ -3,6 +3,45 @@
   "WorkspaceRootPath": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|solutionrelative:vehiclerentalsystem.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.infrastructure\\data\\repositories\\services\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|solutionrelative:vehiclerentalsystem.infrastructure\\data\\repositories\\services\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.infrastructure\\data\\repositories\\interfaces\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|solutionrelative:vehiclerentalsystem.infrastructure\\data\\repositories\\interfaces\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.application\\services\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|solutionrelative:vehiclerentalsystem.application\\services\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.application\\services\\vehicleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|solutionrelative:vehiclerentalsystem.application\\services\\vehicleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Marino\\AppData\\Local\\SourceServer\\cc7683997d41127db22726fe54e891218e79d95565b226d6c63c4c1cffc4438c\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.infrastructure\\data\\repositories\\services\\locationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|solutionrelative:vehiclerentalsystem.infrastructure\\data\\repositories\\services\\locationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,28 +54,12 @@
       "RelativeMoniker": "D:0:0:{D50192D8-99B9-B37F-0BA5-A983FE14E77A}|VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj|solutionrelative:vehiclerentalsystem.domain\\entities\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.application\\services\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|solutionrelative:vehiclerentalsystem.application\\services\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.infrastructure\\data\\repositories\\services\\vehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|solutionrelative:vehiclerentalsystem.infrastructure\\data\\repositories\\services\\vehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.infrastructure\\data\\repositories\\interfaces\\ivehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5DC0A20-7968-2D0C-86AF-B69A858FBBEB}|VehicleRentalSystem.Infrastructure\\VehicleRentalSystem.Infrastructure.csproj|solutionrelative:vehiclerentalsystem.infrastructure\\data\\repositories\\interfaces\\ivehiclerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.webapi\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6D62956-3416-1B66-11CF-26CA4AA67220}|VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj|solutionrelative:vehiclerentalsystem.webapi\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D090FF69-6453-456F-5EB8-1532CBA96FF0}|VehicleRentalSystem.Application\\VehicleRentalSystem.Application.csproj|c:\\users\\marino\\desktop\\vehicle-rental-net\\app\\vehiclerentalsystem.application\\dtos\\location\\createlocationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,6 +78,84 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem.WebApi\\Program.cs",
+              "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Program.cs",
+              "RelativeToolTip": "VehicleRentalSystem.WebApi\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T22:57:04.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem.Application\\DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\DependencyInjection.cs",
+              "RelativeToolTip": "VehicleRentalSystem.Application\\DependencyInjection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T22:56:57.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IGenericRepository.cs",
+              "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IGenericRepository.cs",
+              "RelativeToolTip": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IGenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T22:53:09.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\GenericRepository.cs",
+              "RelativeToolTip": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\GenericRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAewBwAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T22:51:35.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VehicleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Marino\\AppData\\Local\\SourceServer\\cc7683997d41127db22726fe54e891218e79d95565b226d6c63c4c1cffc4438c\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\SourceServer\\cc7683997d41127db22726fe54e891218e79d95565b226d6c63c4c1cffc4438c\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
+              "ToolTip": "C:\\Users\\Marino\\AppData\\Local\\SourceServer\\cc7683997d41127db22726fe54e891218e79d95565b226d6c63c4c1cffc4438c\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\SourceServer\\cc7683997d41127db22726fe54e891218e79d95565b226d6c63c4c1cffc4438c\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T22:51:01.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VehicleService.cs",
+              "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\Services\\VehicleService.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem.Application\\Services\\VehicleService.cs",
+              "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\Services\\VehicleService.cs",
+              "RelativeToolTip": "VehicleRentalSystem.Application\\Services\\VehicleService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAEwDQAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T21:16:44.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "LocationRepository.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\LocationRepository.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\LocationRepository.cs",
@@ -67,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "IVehicleRepository.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IVehicleRepository.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IVehicleRepository.cs",
@@ -75,12 +176,11 @@
               "RelativeToolTip": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Interfaces\\IVehicleRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:23:44.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:23:44.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "VehicleRepository.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
@@ -88,31 +188,30 @@
               "RelativeToolTip": "VehicleRentalSystem.Infrastructure\\Data\\Repositories\\Services\\VehicleRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:23:42.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:23:42.183Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "LocationService.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\Services\\LocationService.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.Application\\Services\\LocationService.cs",
               "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\Services\\LocationService.cs",
               "RelativeToolTip": "VehicleRentalSystem.Application\\Services\\LocationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAvwCUAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T19:23:22.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.WebApi\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Controllers\\AuthController.cs",
               "RelativeToolTip": "VehicleRentalSystem.WebApi\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T19:22:52.546Z",
               "EditorCaption": ""
@@ -132,20 +231,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "VehicleController.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Controllers\\VehicleController.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.WebApi\\Controllers\\VehicleController.cs",
               "ToolTip": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Controllers\\VehicleController.cs",
               "RelativeToolTip": "VehicleRentalSystem.WebApi\\Controllers\\VehicleController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T19:22:01.878Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "LocationController.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\Controllers\\LocationController.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.WebApi\\Controllers\\LocationController.cs",
@@ -153,12 +252,11 @@
               "RelativeToolTip": "VehicleRentalSystem.WebApi\\Controllers\\LocationController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:21:44.591Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:21:44.591Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 12,
               "Title": "Location.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Domain\\Entities\\Location.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.Domain\\Entities\\Location.cs",
@@ -166,12 +264,11 @@
               "RelativeToolTip": "VehicleRentalSystem.Domain\\Entities\\Location.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:21:36.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:21:36.624Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "CreateLocationDTO.cs",
               "DocumentMoniker": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Application\\DTOs\\Location\\CreateLocationDTO.cs",
               "RelativeDocumentMoniker": "VehicleRentalSystem.Application\\DTOs\\Location\\CreateLocationDTO.cs",
@@ -179,8 +276,7 @@
               "RelativeToolTip": "VehicleRentalSystem.Application\\DTOs\\Location\\CreateLocationDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:03:29.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:03:29.406Z"
             }
           ]
         }

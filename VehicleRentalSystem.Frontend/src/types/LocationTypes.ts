@@ -2,14 +2,14 @@ import { Vehicle } from "./VehicleTypes";
 import { VehicleType } from "./VehicleTypeTypes";
 
 export interface Location {
-  Id: number;
-  Name: string;
-  Address: string;
-  City: string;
-  State: string;
-  ZipCode: string;
-  Country: string;
-  PhoneNumber: string | null;
-  Vehicles: Vehicle[] | null;
-  VehicleType: VehicleType[] | null;
+  id: number;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+  phoneNumber: string | null;
+  vehicles: Vehicle[] | null;
+  vehicleType: VehicleType[] | null;
 }

@@ -22,7 +22,6 @@ export function LocationAddForm({ className, ...props }: React.ComponentPropsWit
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} onReset={() => router.back()} className="space-y-4">
-              {serverError && <p className="text-red-500">{serverError}</p>}
               <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -116,6 +115,7 @@ export function LocationAddForm({ className, ...props }: React.ComponentPropsWit
                 </Button>
               </CardFooter>
             </form>
+            <div className="text-center m-auto">{serverError && <p className="text-red-500">{serverError}</p>}</div>
           </Form>
         </CardContent>
       </Card>

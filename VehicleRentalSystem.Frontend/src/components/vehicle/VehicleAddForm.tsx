@@ -8,8 +8,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "../ui/input";
 import { useVehicleForm } from "@/hooks/vehicle/useVehicleForm";
 import { useRouter } from "next/navigation";
+import { Location } from "@/types/LocationTypes";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
-export function VehicleAddForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export interface VehicleAddProps extends React.ComponentPropsWithoutRef<"div"> {
+  locations: Location[];
+}
+
+export function VehicleAddForm({ locations, className, ...props }: VehicleAddProps) {
   const { form, onSubmit, serverError } = useVehicleForm();
   const router = useRouter();
 
@@ -22,7 +28,6 @@ export function VehicleAddForm({ className, ...props }: React.ComponentPropsWith
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} onReset={() => router.back()} className="space-y-4">
-              {serverError && <p className="text-red-500">{serverError}</p>}
               <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -51,6 +56,29 @@ export function VehicleAddForm({ className, ...props }: React.ComponentPropsWith
                   )}
                 />
               </div>
+              <FormField
+                control={form.control}
+                name="locationId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel> Lokacija </FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Odaberite lokaciju vozila" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {locations.map(location => (
+                          <SelectItem className="text-black" value={location.id.toString()} key={location.id}>
+                            {location.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
               <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -160,6 +188,7 @@ export function VehicleAddForm({ className, ...props }: React.ComponentPropsWith
                   </FormItem>
                 )}
               />
+
               <CardFooter className="grid grid-cols-2 pt-4 gap-4">
                 <Button type="submit" variant="save" disabled={form.formState.isSubmitting}>
                   Spremi
@@ -168,6 +197,7 @@ export function VehicleAddForm({ className, ...props }: React.ComponentPropsWith
                   Nazad
                 </Button>
               </CardFooter>
+              <div className="text-center m-auto">{serverError && <p className="text-red-500">{serverError}</p>}</div>
             </form>
           </Form>
         </CardContent>
