@@ -13,12 +13,25 @@ namespace VehicleRentalSystem.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Vehicle>().HasOne(v => v.VehicleType)
+                .WithMany()
+                .HasForeignKey(v => v.VehicleTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Vehicle>().HasOne(v => v.Location)
+                .WithMany(l => l.Vehicles)
+                .HasForeignKey(v => v.LocationId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
             base.OnModelCreating(modelBuilder);
         }
 
         public new DbSet<User> Users { get; set; }
         public new DbSet<Role> Roles { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<VehicleType> VehicleTypes { get; set; }
 
     }
 }

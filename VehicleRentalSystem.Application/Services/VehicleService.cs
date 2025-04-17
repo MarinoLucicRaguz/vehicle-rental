@@ -5,19 +5,22 @@ using VehicleRentalSystem.Application.Interfaces;
 using VehicleRentalSystem.Domain.Entities;
 using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 using AutoMapper;
-using System.Collections.Generic;
 
 namespace VehicleRentalSystem.Application.Services
 {
     public class VehicleService : IVehicleService
     {
+        private readonly IGenericRepository<Vehicle> _genericRepo;
+        private readonly IGenericRepository<Location> _locationRepository;
         private readonly IVehicleRepository _vehicleRepository;
         private readonly IMapper _mapper;
 
-        public VehicleService(IVehicleRepository vehicleRepository, IMapper mapper)
+        public VehicleService(IGenericRepository<Vehicle> genericRepo, IVehicleRepository vehicleRepository, IMapper mapper, IGenericRepository<Location> locationRepository)
         {
+            _genericRepo = genericRepo;
             _vehicleRepository = vehicleRepository;
             _mapper = mapper;
+            _locationRepository = locationRepository;
         }
 
         public async Task<ServiceResponse<int>> CreateVehicleAsync(CreateVehicleDTO vehicle)
@@ -27,15 +30,21 @@ namespace VehicleRentalSystem.Application.Services
             if (existingVehicle != null)
                 return ApiResponse.Failure<int>("Vozilo s ovom registracijom već postoji.");
 
-            var mappedVehicle = _mapper.Map<Vehicle>(vehicle);
-            var createdVehicleId = await _vehicleRepository.CreateVehicleAsync(mappedVehicle);
+            var location = await _locationRepository.GetByIdAsync(vehicle.LocationId);
+            if (location == null)
+                return ApiResponse.Failure<int>("Lokacija nije pronađena.");
 
-            return ApiResponse.Created<int>(createdVehicleId, "Uspješno kreirano vozilo.");
+            var mappedVehicle = _mapper.Map<Vehicle>(vehicle);
+            mappedVehicle.Location = location;
+
+            var createdVehicle = await _genericRepo.CreateAsync(mappedVehicle);
+
+            return ApiResponse.Created<int>(createdVehicle.Id, "Uspješno kreirano vozilo.");
         }
 
         public async Task<ServiceResponse<List<Vehicle>>> GetAllVehiclesAsync()
         {
-            var vehicles = await _vehicleRepository.GetAllVehiclesAsync();
+            var vehicles = await _genericRepo.GetAllAsync();
 
             if (vehicles == null)
                 return ApiResponse.Failure<List<Vehicle>>("Pogreška prilikom dohvaćanja vozila.");

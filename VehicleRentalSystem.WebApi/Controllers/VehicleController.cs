@@ -1,10 +1,12 @@
 ﻿using VehicleRentalSystem.Application.DTOs.Vehicles;
 using VehicleRentalSystem.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VehicleRentalSystem.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class VehicleController : BaseApiController
     {

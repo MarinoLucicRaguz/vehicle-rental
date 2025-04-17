@@ -1,4 +1,4 @@
-import { BadgePlus, CarFront, ChevronUp, House, User2 } from "lucide-react";
+import { BadgePlus, CarFront, ChevronUp, House, MapPin, MapPinned, MapPinPlus, User2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -50,7 +50,13 @@ const NavmenuItems: NavmenuItem[] = [
     collapsible: CollapsibleKeys.Lokacija,
     title: "Nova lokacija",
     url: "/locations/add",
-    icon: BadgePlus,
+    icon: MapPinPlus,
+  },
+  {
+    collapsible: CollapsibleKeys.Lokacija,
+    title: "Popis lokacija",
+    url: "/locations",
+    icon: MapPinned,
   },
 ];
 

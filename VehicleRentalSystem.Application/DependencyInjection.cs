@@ -13,10 +13,10 @@ namespace VehicleRentalSystem.Application
             services.AddScoped<JwtTokenHelper>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<ILocationService, LocationService>();
             services.AddAutoMapper(typeof(VehicleProfile).Assembly);
+            services.AddAutoMapper(typeof(LocationProfile).Assembly);
 
-
-            // Add application services here
             return services;
         }
     }

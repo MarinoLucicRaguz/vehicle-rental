@@ -445,10 +445,10 @@ C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\De
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.VehicleRentalSystem.WebApi.props
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.VehicleRentalSystem.WebApi.props
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleR.9AD9DDFE.Up2Date
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleRentalSystem.WebApi.dll
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\refint\VehicleRentalSystem.WebApi.dll
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleRentalSystem.WebApi.pdb
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleRentalSystem.WebApi.genruntimeconfig.cache
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\ref\VehicleRentalSystem.WebApi.dll
+C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

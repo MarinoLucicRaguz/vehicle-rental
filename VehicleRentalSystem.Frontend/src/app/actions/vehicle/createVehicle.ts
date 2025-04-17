@@ -1,6 +1,6 @@
 "use server";
 
-import { VehicleInput, vehicleSchema } from "@/schema/vehicleSchemas";
+import { VehicleInput, vehicleSchema } from "@/schema/vehicleSchema";
 import { vehicleService } from "@/services/vehicleService";
 
 export async function addVehicleAction(data: VehicleInput) {

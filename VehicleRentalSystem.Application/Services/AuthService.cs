@@ -45,7 +45,7 @@ namespace VehicleRentalSystem.Application.Services
             if (!result.Succeeded)
                 return ApiResponse.Failure<string?>("Greška prilikom registracije.");
 
-            await _userManager.AddToRoleAsync(user, "User");
+            //await _userManager.AddToRoleAsync(user, "User");
 
             return ApiResponse.Created<string?>("Uspješno registriran korisnik.");
         }

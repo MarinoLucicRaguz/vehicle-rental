@@ -2,7 +2,7 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { VehicleInput, vehicleSchema } from "@/schema/vehicleSchemas";
+import { VehicleInput, vehicleSchema } from "@/schema/vehicleSchema";
 import { useState } from "react";
 import { addVehicleAction } from "@/app/actions/vehicle/createVehicle";
 

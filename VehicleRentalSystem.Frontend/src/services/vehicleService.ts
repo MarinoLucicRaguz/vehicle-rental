@@ -1,5 +1,5 @@
 import { get, post } from "@/lib/apiClient";
-import { VehicleInput } from "@/schema/vehicleSchemas";
+import { VehicleInput } from "@/schema/vehicleSchema";
 import { ServiceResponse } from "@/types/ServiceResponse";
 import { Vehicle } from "@/types/VehicleTypes";
 

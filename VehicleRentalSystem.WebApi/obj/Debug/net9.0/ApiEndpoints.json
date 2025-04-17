@@ -48,6 +48,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "VehicleRentalSystem.WebApi.Controllers.LocationController",
+    "Method": "CreateLocation",
+    "RelativePath": "api/Location",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "locationDto",
+        "Type": "VehicleRentalSystem.Application.DTOs.Location.CreateLocationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VehicleRentalSystem.WebApi.Controllers.LocationController",
+    "Method": "GetAllVehicles",
+    "RelativePath": "api/Location",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "VehicleRentalSystem.WebApi.Controllers.VehicleController",
     "Method": "CreateVehicle",
     "RelativePath": "api/Vehicle",
