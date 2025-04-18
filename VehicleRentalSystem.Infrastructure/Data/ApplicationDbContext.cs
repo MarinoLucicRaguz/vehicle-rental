@@ -23,6 +23,15 @@ namespace VehicleRentalSystem.Infrastructure.Data
                 .HasForeignKey(v => v.LocationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<VehicleType>().HasData(
+                new VehicleType { Id = 1, Name = "Jetski" },
+                new VehicleType { Id = 2, Name = "Automobil" }
+            );
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = 1, Name = "User", NormalizedName = "USER" },
+                new Role { Id = 2, Name = "Admin", NormalizedName = "ADMIN" }
+            );
 
             base.OnModelCreating(modelBuilder);
         }
