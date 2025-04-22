@@ -41,6 +41,7 @@ namespace VehicleRentalSystem.Infrastructure.Data
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<RentalType> RentalTypes { get; set; }
 
     }
 }

@@ -7,11 +7,11 @@ import { redirect } from "next/navigation";
 export async function registerAction(formData: FormData) {
   const data = Object.fromEntries(formData.entries());
 
+
   const parseResult = registerSchema.safeParse(data);
   if (!parseResult.success) {
     return { errors: parseResult.error.flatten().fieldErrors };
   }
-
   const { username, password, confirmPassword } = parseResult.data;
   let registrationSuccess = false;
 

@@ -74,6 +74,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "VehicleRentalSystem.WebApi.Controllers.RentalTypeController",
+    "Method": "GetAllRentalTypes",
+    "RelativePath": "api/RentalType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VehicleRentalSystem.WebApi.Controllers.RentalTypeController",
+    "Method": "CreateRentalType",
+    "RelativePath": "api/RentalType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rentalTypeDto",
+        "Type": "VehicleRentalSystem.Application.DTOs.RentalTypes.CreateRentalTypeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "VehicleRentalSystem.WebApi.Controllers.VehicleController",
     "Method": "CreateVehicle",
     "RelativePath": "api/Vehicle",
@@ -93,6 +119,16 @@
     "ContainingType": "VehicleRentalSystem.WebApi.Controllers.VehicleController",
     "Method": "GetAllVehicles",
     "RelativePath": "api/Vehicle",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VehicleRentalSystem.WebApi.Controllers.VehicleTypeController",
+    "Method": "GetAllVehicleTypes",
+    "RelativePath": "api/VehicleType",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

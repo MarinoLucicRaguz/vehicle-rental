@@ -165,6 +165,49 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.RentalType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("DurationUnit")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("FuelIncluded")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsPerPerson")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("MaxPassengers")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RentalTypes");
+                });
+
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -196,6 +239,22 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "User",
+                            NormalizedName = "USER",
+                            RoleName = ""
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Admin",
+                            NormalizedName = "ADMIN",
+                            RoleName = ""
+                        });
                 });
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.User", b =>
@@ -346,11 +405,28 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("RentalTypeId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
 
+                    b.HasIndex("RentalTypeId");
+
                     b.ToTable("VehicleTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Jetski"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Automobil"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -439,6 +515,10 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.HasOne("VehicleRentalSystem.Domain.Entities.Location", null)
                         .WithMany("VehicleTypesAllowed")
                         .HasForeignKey("LocationId");
+
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.RentalType", null)
+                        .WithMany("AvailableVehicleType")
+                        .HasForeignKey("RentalTypeId");
                 });
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Location", b =>
@@ -446,6 +526,11 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.Navigation("VehicleTypesAllowed");
 
                     b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.RentalType", b =>
+                {
+                    b.Navigation("AvailableVehicleType");
                 });
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Role", b =>
