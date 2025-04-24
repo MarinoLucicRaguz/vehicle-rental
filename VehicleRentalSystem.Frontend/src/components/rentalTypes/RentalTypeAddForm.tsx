@@ -6,16 +6,33 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
-import { useVehicleForm } from "@/hooks/vehicle/useVehicleForm";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { useRentalTypeForm } from "@/hooks/rentalType/useRentalTypeForm";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { VehicleType } from "@/types/VehicleTypeTypes";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
-// export interface VehicleAddProps extends React.ComponentPropsWithoutRef<"div"> {
-//   locations: Location[];
-// }
+export interface RentalTypeAddProps extends React.ComponentPropsWithoutRef<"div"> {
+  vehicleTypes: VehicleType[];
+}
 
-export function RentalAddForm({ className, ...props }: React.ComponentPropsWithoutRef<"div"> ) {
-  const { form, onSubmit, serverError } = useVehicleForm();
+const timeOptions = [
+  { value: "minutes", label: "Minuta" },
+  { value: "hours", label: "Sat" },
+  { value: "days", label: "Dan" },
+  { value: "week", label: "Tjedan" },
+];
+
+export function RentalAddForm({ vehicleTypes, className, ...props }: RentalTypeAddProps) {
+  const { form, onSubmit, serverError } = useRentalTypeForm();
   const router = useRouter();
 
   return (
@@ -27,153 +44,19 @@ export function RentalAddForm({ className, ...props }: React.ComponentPropsWitho
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} onReset={() => router.back()} className="space-y-4">
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="vehicleType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tip vozila</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite tip vozila" {...field} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.vehicleType?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="registration"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Registracija</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite registraciju" {...field} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.registration?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              {/* <FormField
+              <FormField
                 control={form.control}
-                name="locationId"
+                name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel> Lokacija </FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Odaberite lokaciju vozila" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {locations.map(location => (
-                          <SelectItem className="text-black" value={location.id.toString()} key={location.id}>
-                            {location.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <FormLabel>Naziv najma</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Unesite naziv" {...field} />
+                    </FormControl>
+                    <FormMessage>{form.formState.errors.name?.message}</FormMessage>
                   </FormItem>
                 )}
-              /> */}
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="make"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Marka</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite marku vozila" {...field} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.make?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="model"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Model</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite model vozila" {...field} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.model?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="year"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Godina</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="Unesite godinu"
-                          {...field}
-                          value={field.value ?? ""}
-                          onChange={e => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
-                        />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.year?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="peopleCapacity"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Kapacitet osoba</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="Unesite kapacitet osoba"
-                          {...field}
-                          value={field.value ?? ""}
-                          onChange={e => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
-                        />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.peopleCapacity?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="fuelCapacity"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Kapacitet goriva</FormLabel>
-                      <FormControl>
-                        <Input type="number" placeholder="Unesite kapacitet goriva" {...field} value={field.value ?? ""} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.fuelCapacity?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="fuelConsumption"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Potrošnja goriva</FormLabel>
-                      <FormControl>
-                        <Input type="number" placeholder="Unesite potrošnju goriva" {...field} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.fuelConsumption?.message}</FormMessage>
-                    </FormItem>
-                  )}
-                />
-              </div>
+              />
               <FormField
                 control={form.control}
                 name="description"
@@ -181,13 +64,167 @@ export function RentalAddForm({ className, ...props }: React.ComponentPropsWitho
                   <FormItem>
                     <FormLabel>Opis</FormLabel>
                     <FormControl>
-                      <Input placeholder="Unesite opis vozila" {...field} />
+                      <Input placeholder="Unesite opis" {...field} />
                     </FormControl>
                     <FormMessage>{form.formState.errors.description?.message}</FormMessage>
                   </FormItem>
                 )}
               />
-
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Cijena</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Unesite cijenu"
+                          {...field}
+                          value={field.value ?? ""}
+                          onChange={e => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                        />
+                      </FormControl>
+                      <FormMessage>{form.formState.errors.price?.message}</FormMessage>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="duration"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Vrijeme</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Unesite vrijeme"
+                          {...field}
+                          value={field.value ?? ""}
+                          onChange={e => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                        />
+                      </FormControl>
+                      <FormMessage>{form.formState.errors.duration?.message}</FormMessage>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="durationUnit"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>J. Vremena </FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Odaberite lokaciju vozila" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {timeOptions.map(time => (
+                            <SelectItem className="text-black" value={time.value} key={time.value}>
+                              {time.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="isPerPerson"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Cijena po osobi</FormLabel>
+                      <FormControl>
+                        <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
+                          <FormItem className="flex items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value={true} />
+                            </FormControl>
+                            <FormLabel className="font-normal">Da</FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value={false} />
+                            </FormControl>
+                            <FormLabel className="font-normal">Ne</FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage>{form.formState.errors.isPerPerson?.message}</FormMessage>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="fuelIncluded"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Gorivo uključeno</FormLabel>
+                      <FormControl>
+                        <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
+                          <FormItem className="flex items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value={true} />
+                            </FormControl>
+                            <FormLabel className="font-normal">Da</FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value={false} />
+                            </FormControl>
+                            <FormLabel className="font-normal">Ne</FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage>{form.formState.errors.isPerPerson?.message}</FormMessage>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormField
+                control={form.control}
+                name="availableVehicleTypeIds"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Dostupno za vozilo</FormLabel>
+                    <FormControl>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="outline">{field.value?.length ? `Odabrano (${field.value.length})` : "Odaberi tip vozila"}</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56">
+                          <DropdownMenuLabel>Tipovi vozila</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          {vehicleTypes.map(vehicle => {
+                            const isChecked = field.value?.includes(vehicle.id);
+                            return (
+                              <DropdownMenuCheckboxItem
+                                key={vehicle.id}
+                                checked={isChecked}
+                                onCheckedChange={checked => {
+                                  const newValue = checked
+                                    ? [...(field.value || []), vehicle.id]
+                                    : (field.value || []).filter(id => id !== vehicle.id);
+                                  field.onChange(newValue);
+                                }}
+                              >
+                                {vehicle.name}
+                              </DropdownMenuCheckboxItem>
+                            );
+                          })}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </FormControl>
+                    <FormMessage>{form.formState.errors.availableVehicleTypeIds?.message}</FormMessage>
+                  </FormItem>
+                )}
+              />
               <CardFooter className="grid grid-cols-2 pt-4 gap-4">
                 <Button type="submit" variant="save" disabled={form.formState.isSubmitting}>
                   Spremi

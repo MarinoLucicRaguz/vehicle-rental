@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6b1ra1yb36Q=",
+  "dgSpecHash": "8/RbWh4l0t8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marino\\Desktop\\novi projekt\\vehicle-rental\\VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj",
+  "projectFilePath": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.WebApi\\VehicleRentalSystem.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marino\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Marino\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

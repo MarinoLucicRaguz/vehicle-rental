@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p6HdV3ytXiI=",
+  "dgSpecHash": "MeX30IV7070=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marino\\Desktop\\novi projekt\\vehicle-rental\\VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marino\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\9.0.4\\microsoft.aspnetcore.cryptography.internal.9.0.4.nupkg.sha512",
     "C:\\Users\\Marino\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\9.0.4\\microsoft.aspnetcore.cryptography.keyderivation.9.0.4.nupkg.sha512",

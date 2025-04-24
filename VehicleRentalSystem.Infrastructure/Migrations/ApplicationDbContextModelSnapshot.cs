@@ -239,22 +239,6 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "User",
-                            NormalizedName = "USER",
-                            RoleName = ""
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Admin",
-                            NormalizedName = "ADMIN",
-                            RoleName = ""
-                        });
                 });
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.User", b =>
@@ -415,18 +399,6 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.HasIndex("RentalTypeId");
 
                     b.ToTable("VehicleTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Jetski"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Automobil"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

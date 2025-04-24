@@ -451,7 +451,6 @@ C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\De
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleRentalSystem.WebApi.pdb
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleRentalSystem.WebApi.genruntimeconfig.cache
 C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\ref\VehicleRentalSystem.WebApi.dll
-C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\bin\Debug\net9.0\appsettings.json
 C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\bin\Debug\net9.0\VehicleRentalSystem.WebApi.staticwebassets.endpoints.json
@@ -604,3 +603,4 @@ C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\o
 C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\obj\Debug\net9.0\VehicleRentalSystem.WebApi.genruntimeconfig.cache
 C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\obj\Debug\net9.0\ref\VehicleRentalSystem.WebApi.dll
 C:\Users\Marino\Desktop\novi projekt\vehicle-rental\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Marino\Desktop\vehicle-rental-net\app\VehicleRentalSystem.WebApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

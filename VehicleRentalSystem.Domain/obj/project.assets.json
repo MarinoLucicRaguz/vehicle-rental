@@ -551,11 +551,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marino\\Desktop\\novi projekt\\vehicle-rental\\VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj",
       "projectName": "VehicleRentalSystem.Domain",
-      "projectPath": "C:\\Users\\Marino\\Desktop\\novi projekt\\vehicle-rental\\VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj",
+      "projectPath": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Domain\\VehicleRentalSystem.Domain.csproj",
       "packagesPath": "C:\\Users\\Marino\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marino\\Desktop\\novi projekt\\vehicle-rental\\VehicleRentalSystem.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Marino\\Desktop\\vehicle-rental-net\\app\\VehicleRentalSystem.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -570,6 +570,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
