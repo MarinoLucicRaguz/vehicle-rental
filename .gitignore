@@ -32,3 +32,5 @@ obj/
 # Ignore Rider and VSCode settings (optional)
 .idea/
 .vscode/
+
+.vs/VehicleRentalSystem/CopilotIndices/
