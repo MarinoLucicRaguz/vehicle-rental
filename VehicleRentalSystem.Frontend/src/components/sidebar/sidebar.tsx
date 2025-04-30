@@ -14,11 +14,42 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 
+
+interface CollapsibleKey {
+  name: string;
+  key: CollapsibleKeys;
+  icon: React.ComponentType<any>;
+}
+
 enum CollapsibleKeys {
   Vozila,
   Lokacija,
+  TipNajma,
   None,
 }
+
+const Map: CollapsibleKey[] = [
+  {
+    name: "Vozila",
+    key: CollapsibleKeys.Vozila,
+    icon: CarFront,
+  },
+  {
+    name: "Lokacija",
+    key: CollapsibleKeys.Lokacija,
+    icon: MapPin,
+  },
+  {
+    name: "Tip najma",
+    key: CollapsibleKeys.TipNajma,
+    icon: MapPinned,
+  },
+  {
+    name: "None",
+    key: CollapsibleKeys.None,
+    icon: House,
+  },
+];
 
 interface NavmenuItem {
   collapsible: CollapsibleKeys;
@@ -56,6 +87,18 @@ const NavmenuItems: NavmenuItem[] = [
     collapsible: CollapsibleKeys.Lokacija,
     title: "Popis lokacija",
     url: "/locations",
+    icon: MapPinned,
+  },
+  {
+    collapsible: CollapsibleKeys.TipNajma,
+    title: "Novi tip najma",
+    url: "/rentalTypes/add",
+    icon: MapPinPlus,
+  },
+  {
+    collapsible: CollapsibleKeys.TipNajma,
+    title: "Popis najmova",
+    url: "/rentalTypes",
     icon: MapPinned,
   },
 ];
