@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Services
 {

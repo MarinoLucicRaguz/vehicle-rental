@@ -1,9 +1,9 @@
 ﻿using VehicleRentalSystem.Infrastructure.Data;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 using VehicleRentalSystem.Infrastructure.Data.Repositories.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Infrastructure
 {

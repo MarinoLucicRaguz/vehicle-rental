@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces
+﻿namespace VehicleRentalSystem.Domain.Repositories.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {

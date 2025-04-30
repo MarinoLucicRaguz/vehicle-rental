@@ -4,7 +4,7 @@ using VehicleRentalSystem.Application.DTOs.RentalTypes;
 using VehicleRentalSystem.Application.Helpers;
 using VehicleRentalSystem.Application.Interfaces;
 using VehicleRentalSystem.Domain.Entities;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Application.Services
 {

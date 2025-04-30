@@ -1,6 +1,6 @@
 ﻿using VehicleRentalSystem.Domain.Entities;
 
-namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces
+namespace VehicleRentalSystem.Domain.Repositories.Interfaces
 {
     public interface ILocationRepository
     {

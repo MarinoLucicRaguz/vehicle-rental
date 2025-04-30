@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VehicleRentalSystem.Domain.Entities;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Services
 {

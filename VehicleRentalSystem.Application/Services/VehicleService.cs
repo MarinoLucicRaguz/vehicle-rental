@@ -3,9 +3,9 @@ using VehicleRentalSystem.Application.DTOs.Vehicles;
 using VehicleRentalSystem.Application.Helpers;
 using VehicleRentalSystem.Application.Interfaces;
 using VehicleRentalSystem.Domain.Entities;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Application.Services
 {
