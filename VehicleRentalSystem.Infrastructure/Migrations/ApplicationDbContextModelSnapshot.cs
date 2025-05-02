@@ -125,6 +125,21 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("RentalTypeVehicleType", b =>
+                {
+                    b.Property<int>("AvailableVehicleTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RentalTypesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("AvailableVehicleTypeId", "RentalTypesId");
+
+                    b.HasIndex("RentalTypesId");
+
+                    b.ToTable("VehicleTypeRentalType", (string)null);
+                });
+
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Location", b =>
                 {
                     b.Property<int>("Id")
@@ -163,6 +178,49 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.RentalType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("DurationUnit")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("FuelIncluded")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsPerPerson")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("MaxPassengers")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RentalTypes");
                 });
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Role", b =>
@@ -400,6 +458,21 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.HasOne("VehicleRentalSystem.Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RentalTypeVehicleType", b =>
+                {
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.VehicleType", null)
+                        .WithMany()
+                        .HasForeignKey("AvailableVehicleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.RentalType", null)
+                        .WithMany()
+                        .HasForeignKey("RentalTypesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

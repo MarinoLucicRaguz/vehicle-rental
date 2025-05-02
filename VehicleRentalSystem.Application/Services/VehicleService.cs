@@ -3,9 +3,9 @@ using VehicleRentalSystem.Application.DTOs.Vehicles;
 using VehicleRentalSystem.Application.Helpers;
 using VehicleRentalSystem.Application.Interfaces;
 using VehicleRentalSystem.Domain.Entities;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Application.Services
 {
@@ -13,15 +13,17 @@ namespace VehicleRentalSystem.Application.Services
     {
         private readonly IGenericRepository<Vehicle> _genericRepo;
         private readonly IGenericRepository<Location> _locationRepository;
+        private readonly IGenericRepository<VehicleType> _vehicleTypeRepository;
         private readonly IVehicleRepository _vehicleRepository;
         private readonly IMapper _mapper;
 
-        public VehicleService(IGenericRepository<Vehicle> genericRepo, IVehicleRepository vehicleRepository, IMapper mapper, IGenericRepository<Location> locationRepository)
+        public VehicleService(IGenericRepository<Vehicle> genericRepo, IVehicleRepository vehicleRepository, IMapper mapper, IGenericRepository<Location> locationRepository, IGenericRepository<VehicleType> vehicleTypeRepository)
         {
             _genericRepo = genericRepo;
             _vehicleRepository = vehicleRepository;
             _mapper = mapper;
             _locationRepository = locationRepository;
+            _vehicleTypeRepository = vehicleTypeRepository;
         }
 
         public async Task<ServiceResponse<int>> CreateVehicleAsync(CreateVehicleDTO vehicle)

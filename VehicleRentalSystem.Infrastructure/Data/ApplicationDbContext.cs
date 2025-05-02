@@ -23,15 +23,19 @@ namespace VehicleRentalSystem.Infrastructure.Data
                 .HasForeignKey(v => v.LocationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<VehicleType>().HasData(
-                new VehicleType { Id = 1, Name = "Jetski" },
-                new VehicleType { Id = 2, Name = "Automobil" }
-            );
+            modelBuilder.Entity<VehicleType>().HasMany(vt => vt.RentalTypes)
+                .WithMany(rt => rt.AvailableVehicleType)
+                .UsingEntity(j => j.ToTable("VehicleTypeRentalType"));
 
-            modelBuilder.Entity<Role>().HasData(
-                new Role { Id = 1, Name = "User", NormalizedName = "USER" },
-                new Role { Id = 2, Name = "Admin", NormalizedName = "ADMIN" }
-            );
+            //modelBuilder.Entity<VehicleType>().HasData(
+            //    new VehicleType { Id = 1, Name = "Jetski" },
+            //    new VehicleType { Id = 2, Name = "Automobil" }
+            //);
+
+            //modelBuilder.Entity<Role>().HasData(
+            //    new Role { Id = 1, Name = "User", NormalizedName = "USER" },
+            //    new Role { Id = 2, Name = "Admin", NormalizedName = "ADMIN" }
+            //);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -41,6 +45,7 @@ namespace VehicleRentalSystem.Infrastructure.Data
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<RentalType> RentalTypes { get; set; }
 
     }
 }

@@ -1,9 +1,9 @@
 ﻿using VehicleRentalSystem.Infrastructure.Data;
-using VehicleRentalSystem.Infrastructure.Data.Repositories.Interfaces;
 using VehicleRentalSystem.Infrastructure.Data.Repositories.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VehicleRentalSystem.Domain.Repositories.Interfaces;
 
 namespace VehicleRentalSystem.Infrastructure
 {
@@ -14,6 +14,7 @@ namespace VehicleRentalSystem.Infrastructure
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));

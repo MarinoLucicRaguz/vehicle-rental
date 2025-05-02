@@ -4,7 +4,6 @@ import { DataTable } from "@/components/datatable/data-table";
 
 export default async function Page() {
   const response = await getAllVehicles();
-  console.log(response.data);
   return (
     <div className="w-full">
       <DataTable columns={VehicleColumns} data={response.data || []} />

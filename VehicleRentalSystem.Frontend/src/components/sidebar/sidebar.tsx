@@ -1,4 +1,4 @@
-import { BadgePlus, CarFront, ChevronUp, House, MapPin, MapPinned, MapPinPlus, User2 } from "lucide-react";
+import { BadgePlus, Car, CarFront, ChevronUp, House, MapPin, MapPinned, MapPinPlus, User2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -15,68 +15,56 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 
 enum CollapsibleKeys {
-  Vozila,
-  Lokacija,
-  None,
+  None = "none",
+  Vozila = "vozila",
+  Lokacija = "lokacija",
+  TipNajma = "tipNajma",
 }
+
+interface CollapsibleMetadata {
+  name: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+const collapsibleSections: Record<CollapsibleKeys, CollapsibleMetadata> = {
+  [CollapsibleKeys.Vozila]: { name: "Vozila", icon: CarFront },
+  [CollapsibleKeys.Lokacija]: { name: "Lokacije", icon: MapPin },
+  [CollapsibleKeys.TipNajma]: { name: "Tipovi najma", icon: MapPinned },
+  [CollapsibleKeys.None]: { name: "", icon: House },
+};
 
 interface NavmenuItem {
   collapsible: CollapsibleKeys;
   title: string;
   url: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-const NavmenuItems: NavmenuItem[] = [
-  {
-    collapsible: CollapsibleKeys.None,
-    title: "Početna",
-    url: "/",
-    icon: House,
-  },
-  {
-    collapsible: CollapsibleKeys.Vozila,
-    title: "Popis vozila",
-    url: "/vehicles",
-    icon: CarFront,
-  },
-  {
-    collapsible: CollapsibleKeys.Vozila,
-    title: "Novo vozilo",
-    url: "/vehicles/add",
-    icon: BadgePlus,
-  },
-  {
-    collapsible: CollapsibleKeys.Lokacija,
-    title: "Nova lokacija",
-    url: "/locations/add",
-    icon: MapPinPlus,
-  },
-  {
-    collapsible: CollapsibleKeys.Lokacija,
-    title: "Popis lokacija",
-    url: "/locations",
-    icon: MapPinned,
-  },
+const navMenuItems: NavmenuItem[] = [
+  { collapsible: CollapsibleKeys.None, title: "Početna", url: "/", icon: House },
+  { collapsible: CollapsibleKeys.Vozila, title: "Popis vozila", url: "/vehicles", icon: CarFront },
+  { collapsible: CollapsibleKeys.Vozila, title: "Novo vozilo", url: "/vehicles/add", icon: BadgePlus },
+  { collapsible: CollapsibleKeys.Lokacija, title: "Nova lokacija", url: "/locations/add", icon: MapPinPlus },
+  { collapsible: CollapsibleKeys.Lokacija, title: "Popis lokacija", url: "/locations", icon: MapPinned },
+  { collapsible: CollapsibleKeys.TipNajma, title: "Novi tip najma", url: "/rentalTypes/add", icon: MapPinPlus },
+  { collapsible: CollapsibleKeys.TipNajma, title: "Popis najmova", url: "/rentalTypes", icon: MapPinned },
 ];
 
-function groupByCollapsible(items: NavmenuItem[]): Record<number, NavmenuItem[]> {
+function groupByCollapsible(items: NavmenuItem[]): Record<CollapsibleKeys, NavmenuItem[]> {
   return items.reduce((acc, item) => {
-    if (!acc[item.collapsible]) {
-      acc[item.collapsible] = [];
-    }
+    if (!acc[item.collapsible]) acc[item.collapsible] = [];
     acc[item.collapsible].push(item);
     return acc;
-  }, {} as Record<number, NavmenuItem[]>);
+  }, {} as Record<CollapsibleKeys, NavmenuItem[]>);
 }
 
 export function AppSidebar() {
-  const groupedNavMenuItems = groupByCollapsible(NavmenuItems);
-  const noneItems = groupedNavMenuItems[CollapsibleKeys.None] ?? [];
-  const collapsibleEntries = Object.entries(groupedNavMenuItems).filter(([key]) => parseInt(key, 10) !== CollapsibleKeys.None) as [
-    string,
-    NavmenuItem[]
-  ][];
+  const groupedNav = groupByCollapsible(navMenuItems);
+  const noneItems = groupedNav[CollapsibleKeys.None] ?? [];
+
+  const collapsibleEntries = Object.entries(groupedNav)
+    .filter(([key]) => key !== CollapsibleKeys.None)
+    .map(([key, items]) => [key as CollapsibleKeys, items] as const);
 
   return (
     <Sidebar collapsible="icon">
@@ -84,26 +72,30 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {noneItems.map((item: NavmenuItem) => (
+              {noneItems.map(item => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a href={item.url} className="flex gap-2">
+                      <item.icon />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
 
-              {collapsibleEntries.map(([keyAsString, items]) => {
-                const collapsibleKey = parseInt(keyAsString, 10) as CollapsibleKeys;
+              {collapsibleEntries.map(([sectionKey, items]) => {
+                const section = collapsibleSections[sectionKey];
                 return (
-                  <Collapsible key={keyAsString} defaultOpen className="group/collapsible">
+                  <Collapsible key={sectionKey} defaultOpen className="group/collapsible">
                     <CollapsibleTrigger asChild>
-                      <SidebarMenuButton>{CollapsibleKeys[collapsibleKey]}</SidebarMenuButton>
+                      <SidebarMenuButton className="flex items-center gap-2">
+                        <section.icon />
+                        <span>{section.name}</span>
+                      </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {items.map((subItem: NavmenuItem) => (
+                        {items.map(subItem => (
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuButton asChild>
                               <a href={subItem.url} className="flex gap-2">
