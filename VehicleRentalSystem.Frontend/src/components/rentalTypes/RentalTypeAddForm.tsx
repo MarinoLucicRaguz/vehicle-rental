@@ -115,7 +115,7 @@ export function RentalAddForm({ vehicleTypes, className, ...props }: RentalTypeA
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>J. Vremena </FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Odaberite lokaciju vozila" />
@@ -141,16 +141,20 @@ export function RentalAddForm({ vehicleTypes, className, ...props }: RentalTypeA
                     <FormItem>
                       <FormLabel>Cijena po osobi</FormLabel>
                       <FormControl>
-                        <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
+                        <RadioGroup
+                          onValueChange={val => field.onChange(val === "true")}
+                          value={field.value ? "true" : "false"}
+                          className="flex flex-col space-y-1"
+                        >
                           <FormItem className="flex items-center space-x-3 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value={true} />
+                              <RadioGroupItem value="true" />
                             </FormControl>
                             <FormLabel className="font-normal">Da</FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center space-x-3 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value={false} />
+                              <RadioGroupItem value="false" />
                             </FormControl>
                             <FormLabel className="font-normal">Ne</FormLabel>
                           </FormItem>
@@ -167,22 +171,26 @@ export function RentalAddForm({ vehicleTypes, className, ...props }: RentalTypeA
                     <FormItem>
                       <FormLabel>Gorivo uključeno</FormLabel>
                       <FormControl>
-                        <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
+                        <RadioGroup
+                          onValueChange={val => field.onChange(val === "true")}
+                          value={field.value ? "true" : "false"}
+                          className="flex flex-col space-y-1"
+                        >
                           <FormItem className="flex items-center space-x-3 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value={true} />
+                              <RadioGroupItem value="true" />
                             </FormControl>
                             <FormLabel className="font-normal">Da</FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center space-x-3 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value={false} />
+                              <RadioGroupItem value="false" />
                             </FormControl>
                             <FormLabel className="font-normal">Ne</FormLabel>
                           </FormItem>
                         </RadioGroup>
                       </FormControl>
-                      <FormMessage>{form.formState.errors.isPerPerson?.message}</FormMessage>
+                      <FormMessage>{form.formState.errors.fuelIncluded?.message}</FormMessage>
                     </FormItem>
                   )}
                 />

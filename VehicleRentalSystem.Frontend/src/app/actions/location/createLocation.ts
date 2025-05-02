@@ -10,7 +10,6 @@ export async function addLocationAction(data: LocationInput) {
   }
   try {
     const result = await locationService.create(parseResult.data);
-    console.log(result);
     if (!result.success) {
       return { success: false, error: result.message || "Nepoznata pogreška prilikom dodavanja lokacije." };
     }

@@ -18,8 +18,8 @@ export function useRentalTypeForm(onSuccess?: () => void) {
       isPerPerson: false,
       isActive: true,
       fuelIncluded: true,
-      maxPassengers: undefined,
-      availableVehicleTypeIds: undefined,
+      maxPassengers: 0,
+      availableVehicleTypeIds: [],
     },
   });
 

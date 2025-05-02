@@ -30,7 +30,6 @@ export async function middleware(request: NextRequest) {
 async function validateToken(token: string) {
   try {
     const { success, data } = await authService.validate(token);
-    console.log(data);
     return success && data;
   } catch {
     return false;

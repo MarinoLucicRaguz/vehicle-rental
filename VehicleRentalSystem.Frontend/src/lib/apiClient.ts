@@ -38,7 +38,6 @@ export const apiClient = async <T = any>(endpoint: string, method: RequestMethod
   };
 
   try {
-    console.log(url, fetchOptions)
     const response = await fetch(url, fetchOptions);
     if (!response.ok) {
       const errorjson = await response.json();

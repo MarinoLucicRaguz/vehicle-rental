@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using VehicleRentalSystem.Application.DTOs;
 using VehicleRentalSystem.Application.DTOs.RentalTypes;
 using VehicleRentalSystem.Application.Helpers;
@@ -48,7 +49,7 @@ namespace VehicleRentalSystem.Application.Services
 
         public async Task<ServiceResponse<List<RentalType>>> GetAllRentalTypesAsync()
         {
-            var rentalTypes = await _genericRepository.GetAllAsync();
+            var rentalTypes = await _genericRepository.GetAllAsync(rt => rt.Include(x => x.AvailableVehicleType));
             
             if (rentalTypes == null)
                 return ApiResponse.Failure<List<RentalType>>("Pogreška prilikom dohvaćanja tipova najma.");
