@@ -1,11 +1,10 @@
-﻿using VehicleRentalSystem.Domain.Enums;
+﻿using VehicleRentalSystem.Domain.Entities;
+using VehicleRentalSystem.Domain.Enums;
 
-namespace VehicleRentalSystem.Domain.Entities
+namespace VehicleRentalSystem.Application.DTOs.Reservations
 {
-    public class Reservation
+    public class CreateReservationDTO
     {
-        public int Id { get; set; }
-        public string? BookingNumber { get; set; }
         public DateTime ReservationDate { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
@@ -20,11 +19,8 @@ namespace VehicleRentalSystem.Domain.Entities
         public string? ContactEmail { get; set; }
         public string Notes { get; set; } = string.Empty;
         public int UserId { get; set; }
-        public User User { get; set; } = new User();
         public int RentalTypeId { get; set; }
-        public RentalType RentalType { get; set; } = new RentalType();
-        public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        public List<int> VehicleIds { get; set; } = new List<int>();
         public int LocationId { get; set; }
-        public Location Location { get; set; } = new Location();
     }
 }

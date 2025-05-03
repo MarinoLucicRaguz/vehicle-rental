@@ -16,5 +16,6 @@
         public bool Status { get; set; } = true;
         public int LocationId { get; set; }
         public Location Location { get; set; } = new Location();
+        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

@@ -1,4 +1,4 @@
-import { BadgePlus, Car, CarFront, ChevronUp, House, MapPin, MapPinned, MapPinPlus, User2 } from "lucide-react";
+import { BadgePlus, CalendarCheck2, CalendarDays, CalendarPlus, CarFront, ChevronUp, House, MapPin, MapPinned, MapPinPlus, User2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -19,6 +19,7 @@ enum CollapsibleKeys {
   Vozila = "vozila",
   Lokacija = "lokacija",
   TipNajma = "tipNajma",
+  Rezervacija = "rezervacija",
 }
 
 interface CollapsibleMetadata {
@@ -30,6 +31,7 @@ const collapsibleSections: Record<CollapsibleKeys, CollapsibleMetadata> = {
   [CollapsibleKeys.Vozila]: { name: "Vozila", icon: CarFront },
   [CollapsibleKeys.Lokacija]: { name: "Lokacije", icon: MapPin },
   [CollapsibleKeys.TipNajma]: { name: "Tipovi najma", icon: MapPinned },
+  [CollapsibleKeys.Rezervacija] : { name:"Rezervacija", icon: CalendarCheck2},
   [CollapsibleKeys.None]: { name: "", icon: House },
 };
 
@@ -48,6 +50,8 @@ const navMenuItems: NavmenuItem[] = [
   { collapsible: CollapsibleKeys.Lokacija, title: "Popis lokacija", url: "/locations", icon: MapPinned },
   { collapsible: CollapsibleKeys.TipNajma, title: "Novi tip najma", url: "/rentalTypes/add", icon: MapPinPlus },
   { collapsible: CollapsibleKeys.TipNajma, title: "Popis najmova", url: "/rentalTypes", icon: MapPinned },
+  { collapsible: CollapsibleKeys.Rezervacija, title: "Popis rezervacija", url: "/reservations", icon: CalendarDays },
+  { collapsible: CollapsibleKeys.Rezervacija, title: "Nova rezervacija", url: "/reservations/add", icon: CalendarPlus},
 ];
 
 function groupByCollapsible(items: NavmenuItem[]): Record<CollapsibleKeys, NavmenuItem[]> {

@@ -7,5 +7,6 @@ namespace VehicleRentalSystem.Domain.Entities
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public Role Role { get; set; } = new Role();
+        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

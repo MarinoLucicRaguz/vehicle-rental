@@ -12,5 +12,6 @@
         public string? PhoneNumber { get; set; }
         public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
         public List<VehicleType> VehicleTypesAllowed { get; set;} = new List<VehicleType>();
+        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }
