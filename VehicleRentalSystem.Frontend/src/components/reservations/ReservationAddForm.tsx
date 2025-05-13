@@ -20,12 +20,15 @@ import { TimePicker } from "../ui/time-picker";
 import { useWatch } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { EnumOptionsDTO } from "@/types/EnumTypes";
 // import { Textarea } from "../ui/textarea"; // Uncomment when Textarea is available
 
 export interface ReservationAddProps extends React.ComponentPropsWithoutRef<"div"> {
   locations: Location[];
   vehicles: Vehicle[];
   rentalTypes: RentalType[];
+  paymentOptions: EnumOptionsDTO[];
+  reservationStatuses: EnumOptionsDTO[];
 }
 
 function calculateEndTime(start: Date, rentalType: RentalType): Date {
@@ -49,7 +52,15 @@ function calculateEndTime(start: Date, rentalType: RentalType): Date {
   return end;
 }
 
-export function ReservationAddForm({ locations, vehicles, rentalTypes, className, ...props }: ReservationAddProps) {
+export function ReservationAddForm({
+  locations,
+  vehicles,
+  rentalTypes,
+  paymentOptions,
+  reservationStatuses,
+  className,
+  ...props
+}: ReservationAddProps) {
   const { form, onSubmit, serverError } = useReservationForm();
   const router = useRouter();
 
@@ -83,9 +94,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
     }
   }, [reservationDate, startTime, rentalTypeId, rentalTypes, form]);
 
-  /**
-   * Helper to render a summary of selected vehicles (e.g. "3 vozila" or single name)
-   */
   const vehicleSummary = (ids: number[]): string => {
     if (!ids || ids.length === 0) return "Odaberite vozila";
     if (ids.length === 1) {
@@ -94,16 +102,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
     }
     return `${ids.length} vozila`;
   };
-  useEffect(() => {
-  const subscription = form.watch((values, info) => {
-    console.log("📝 form changed →", {
-      fieldThatChanged: info.name,
-      triggerType: info.type,   // 'change' | 'blur' | 'submit' etc.
-      currentValues: values,
-    });
-  });
-  return () => subscription.unsubscribe(); // cleanup on unmount
-}, [form]);
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -114,9 +112,7 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} onReset={() => router.back()} className="space-y-6">
-              {/*  ╔══════════════╗  Basic info  ╔══════════════╗ */}
               <div className="grid gap-4 md:grid-cols-2">
-                {/* Šifra rezervacije */}
                 <FormField
                   control={form.control}
                   name="bookingNumber"
@@ -124,14 +120,12 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                     <FormItem>
                       <FormLabel>Šifra rezervacije</FormLabel>
                       <FormControl>
-                        <Input placeholder="Unesite šifru rezervacije" {...field} />
+                        <Input readOnly={true} placeholder="Unesite šifru rezervacije" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-
-                {/* Datum rezervacije */}
                 <FormField
                   control={form.control}
                   name="reservationDate"
@@ -161,8 +155,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                     </FormItem>
                   )}
                 />
-
-                {/* Vrijeme početka */}
                 <FormField
                   control={form.control}
                   name="startTime"
@@ -176,8 +168,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                     </FormItem>
                   )}
                 />
-
-                {/* Kraj rezervacije – prikaz samo HH:mm */}
                 <FormField
                   control={form.control}
                   name="endTime"
@@ -191,8 +181,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                   )}
                 />
               </div>
-
-              {/*  ╔══════════════╗  Rental type  ╔══════════════╗ */}
               <FormField
                 control={form.control}
                 name="rentalTypeId"
@@ -217,8 +205,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                   </FormItem>
                 )}
               />
-
-              {/*  ╔══════════════╗  Location  ╔══════════════╗ */}
               <FormField
                 control={form.control}
                 name="locationId"
@@ -243,8 +229,6 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                   </FormItem>
                 )}
               />
-
-              {/*  ╔══════════════╗  Vehicles (multi)  ╔══════════════╗ */}
               <FormField
                 control={form.control}
                 name="vehicleIds"
@@ -339,9 +323,20 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Način plaćanja</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite način plaćanja" {...field} />
-                      </FormControl>
+                      <Select value={String(field.value)} onValueChange={val => field.onChange(Number(val))}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Odaberite način plaćanja" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {paymentOptions.map(opt => (
+                            <SelectItem key={opt.id} value={String(opt.id)}>
+                              {opt.displayName}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -352,9 +347,20 @@ export function ReservationAddForm({ locations, vehicles, rentalTypes, className
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Status rezervacije</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite status" {...field} />
-                      </FormControl>
+                      <Select value={String(field.value)} onValueChange={val => field.onChange(Number(val))}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Odaberite status" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {reservationStatuses.map(opt => (
+                            <SelectItem key={opt.id} value={String(opt.id)}>
+                              {opt.displayName}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
