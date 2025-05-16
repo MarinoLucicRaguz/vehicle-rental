@@ -37,8 +37,13 @@ namespace VehicleRentalSystem.Application.Services
             if (location == null)
                 return ApiResponse.Failure<int>("Lokacija nije pronađena.");
 
+            var typeEntity = await _vehicleTypeRepository.GetByIdAsync(vehicle.VehicleTypeId);
+            if (typeEntity == null)
+                return ApiResponse.Failure<int>("Tip vozila nije pronađen.");
+
             var mappedVehicle = _mapper.Map<Vehicle>(vehicle);
             mappedVehicle.Location = location;
+            mappedVehicle.VehicleType = typeEntity;
 
             var createdVehicle = await _genericRepo.CreateAsync(mappedVehicle);
 
@@ -47,7 +52,7 @@ namespace VehicleRentalSystem.Application.Services
 
         public async Task<ServiceResponse<List<Vehicle>>> GetAllVehiclesAsync()
         {
-            var vehicles = await _genericRepo.GetAllAsync(query => query.Include(v => v.Location));
+            var vehicles = await _genericRepo.GetAllAsync(query => query.Include(v => v.Location).Include(v => v.VehicleType));
 
             if (vehicles == null)
                 return ApiResponse.Failure<List<Vehicle>>("Pogreška prilikom dohvaćanja vozila.");

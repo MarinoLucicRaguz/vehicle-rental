@@ -21,7 +21,6 @@ import { useWatch } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { EnumOptionsDTO } from "@/types/EnumTypes";
-// import { Textarea } from "../ui/textarea"; // Uncomment when Textarea is available
 
 export interface ReservationAddProps extends React.ComponentPropsWithoutRef<"div"> {
   locations: Location[];
@@ -74,16 +73,13 @@ export function ReservationAddForm({
     const rentalType = rentalTypes.find(rt => rt.id === Number(rentalTypeId));
     if (!rentalType) return;
 
-    // 1️⃣ merge chosen date & time into one Date obj
     const mergedStart = new Date(startTime);
     if (reservationDate) {
       mergedStart.setFullYear(reservationDate.getFullYear(), reservationDate.getMonth(), reservationDate.getDate());
     }
 
-    // 2️⃣ compute new end‑time
     const newEnd = calculateEndTime(mergedStart, rentalType);
 
-    // 3️⃣ update form state ONLY if genuinely different
     const prevStart = form.getValues("startTime");
     if (!prevStart || new Date(prevStart).getTime() !== mergedStart.getTime()) {
       form.setValue("startTime", mergedStart, { shouldValidate: false, shouldDirty: true });
@@ -113,14 +109,14 @@ export function ReservationAddForm({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} onReset={() => router.back()} className="space-y-6">
               <div className="grid gap-4 md:grid-cols-2">
-en                <FormField
+                <FormField
                   control={form.control}
                   name="bookingNumber"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Šifra rezervacije</FormLabel>
                       <FormControl>
-                        <Input readOnly={true} placeholder="Unesite šifru rezervacije" {...field} />
+                        <Input disabled placeholder="Šifra rezervacije" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -142,13 +138,7 @@ en                <FormField
                           </FormControl>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={date => date < new Date()}
-                            initialFocus
-                          />
+                          <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={{ before: new Date() }} />
                         </PopoverContent>
                       </Popover>
                       <FormMessage />
@@ -162,7 +152,7 @@ en                <FormField
                     <FormItem>
                       <FormLabel>Vrijeme početka</FormLabel>
                       <FormControl>
-                        <TimePicker date={field.value} setDate={field.onChange} tpDisabled={false} />
+                        <TimePicker textVisible={false} date={field.value} setDate={field.onChange} tpDisabled={false} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -177,6 +167,7 @@ en                <FormField
                       <FormControl>
                         <Input value={field.value ? format(new Date(field.value), "HH:mm") : ""} readOnly disabled />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -233,12 +224,12 @@ en                <FormField
                 control={form.control}
                 name="vehicleIds"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col space-y-1">
                     <FormLabel>Vozila</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
-                          <Button variant="outline" className="justify-between w-full md:w-[240px]">
+                          <Button variant="outline" className={cn("w-full pl-3 text-left font-normal")}>
                             {vehicleSummary(field.value || [])}
                             <Check className="h-4 w-4 opacity-50" />
                           </Button>
@@ -272,7 +263,6 @@ en                <FormField
                   </FormItem>
                 )}
               />
-
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <FormField
                   control={form.control}

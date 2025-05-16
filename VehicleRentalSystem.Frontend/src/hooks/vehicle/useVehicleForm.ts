@@ -10,7 +10,7 @@ export function useVehicleForm(onSuccess?: () => void) {
   const form = useForm<VehicleInput>({
     resolver: zodResolver(vehicleSchema),
     defaultValues: {
-      vehicleType: "",
+      vehicleTypeId: undefined,
       registration: "",
       make: "",
       model: "",

@@ -10,12 +10,14 @@ import { useVehicleForm } from "@/hooks/vehicle/useVehicleForm";
 import { useRouter } from "next/navigation";
 import { Location } from "@/types/LocationTypes";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { VehicleType } from "@/types/VehicleTypeTypes";
 
 export interface VehicleAddProps extends React.ComponentPropsWithoutRef<"div"> {
+  vehicleTypes: VehicleType[];
   locations: Location[];
 }
 
-export function VehicleAddForm({ locations, className, ...props }: VehicleAddProps) {
+export function VehicleAddForm({ vehicleTypes, locations, className, ...props }: VehicleAddProps) {
   const { form, onSubmit, serverError } = useVehicleForm();
   const router = useRouter();
 
@@ -31,14 +33,24 @@ export function VehicleAddForm({ locations, className, ...props }: VehicleAddPro
               <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
-                  name="vehicleType"
+                  name="vehicleTypeId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Tip vozila</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Unesite tip vozila" {...field} />
-                      </FormControl>
-                      <FormMessage>{form.formState.errors.vehicleType?.message}</FormMessage>
+                      <FormLabel> Tip vozila </FormLabel>
+                      <Select value={field.value ? field.value.toString() : ""} onValueChange={val => field.onChange(Number(val))}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Odaberite tip vozila" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {vehicleTypes.map(vehicleType => (
+                            <SelectItem className="text-black" value={vehicleType.id.toString()} key={vehicleType.id}>
+                              {vehicleType.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </FormItem>
                   )}
                 />
@@ -62,7 +74,7 @@ export function VehicleAddForm({ locations, className, ...props }: VehicleAddPro
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel> Lokacija </FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select value={field.value ? field.value.toString() : ""} onValueChange={val => field.onChange(Number(val))}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Odaberite lokaciju vozila" />

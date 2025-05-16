@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using VehicleRentalSystem.Application.DTOs;
 using VehicleRentalSystem.Application.DTOs.Reservations;
 using VehicleRentalSystem.Application.Helpers;
@@ -36,7 +37,7 @@ namespace VehicleRentalSystem.Application.Services
 
         public async Task<ServiceResponse<List<Reservation>>> GetAllReservations()
         {
-            var reservations = await _genericRepository.GetAllAsync();
+            var reservations = await _genericRepository.GetAllAsync(r => r.Include(x => x.Vehicles).Include(x => x.Location).Include(x => x.RentalType));
             return ApiResponse.Created<List<Reservation>>(reservations, "Uspješno dohvaćene rezervacije.");
         }
 
