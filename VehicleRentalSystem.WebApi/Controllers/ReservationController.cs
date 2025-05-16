@@ -24,7 +24,7 @@ namespace VehicleRentalSystem.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ActionResult([FromBody] CreateReservationDTO reservationDto)
+        public async Task<IActionResult> CreateReservation([FromBody] CreateReservationDTO reservationDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

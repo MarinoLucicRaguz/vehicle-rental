@@ -113,7 +113,7 @@ export function ReservationAddForm({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} onReset={() => router.back()} className="space-y-6">
               <div className="grid gap-4 md:grid-cols-2">
-                <FormField
+en                <FormField
                   control={form.control}
                   name="bookingNumber"
                   render={({ field }) => (
