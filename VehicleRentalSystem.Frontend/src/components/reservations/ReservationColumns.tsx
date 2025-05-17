@@ -143,7 +143,7 @@ export const ReservationColumns: ColumnDef<Reservation>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => (
+    cell: () => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">

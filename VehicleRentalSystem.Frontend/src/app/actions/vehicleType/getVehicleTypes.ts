@@ -8,7 +8,7 @@ export async function getAllVehicleTypes(): Promise<ServiceResponse<VehicleType[
   try {
     const response = await vehicleTypeService.getAll();
     return response;
-  } catch (error) {
+  } catch {
     return { success: false, message: "Dogodila se pogreška. Molimo vas osvježite stranicu.", statusCode: 500, data: [] };
   }
 }

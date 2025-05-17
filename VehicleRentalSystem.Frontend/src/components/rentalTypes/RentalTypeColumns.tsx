@@ -185,8 +185,9 @@ export const RentalTypeColumns: ColumnDef<RentalType>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
-      const vehicle = row.original;
+    // cell: ({ row }) => {
+    cell: () => {
+      // const vehicle = row.original;
 
       return (
         <DropdownMenu>

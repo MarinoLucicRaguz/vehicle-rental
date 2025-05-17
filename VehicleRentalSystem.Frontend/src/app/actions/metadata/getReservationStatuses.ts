@@ -8,7 +8,7 @@ export async function getReservationStatuses(): Promise<ServiceResponse<EnumOpti
   try {
     const response = await metadataService.getReservationStatuses();
     return response;
-  } catch (error) {
+  } catch {
     return { success: false, message: "Dogodila se pogreška. Molimo vas osvježite stranicu.", statusCode: 500, data: [] };
   }
 }

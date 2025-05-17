@@ -180,7 +180,7 @@ export function VehicleAddForm({ vehicleTypes, locations, className, ...props }:
                     <FormItem>
                       <FormLabel>Potrošnja goriva</FormLabel>
                       <FormControl>
-                        <Input type="number" placeholder="Unesite potrošnju goriva" {...field} />
+                        <Input type="number" placeholder="Unesite potrošnju goriva" {...field} value={field.value ?? ""} />
                       </FormControl>
                       <FormMessage>{form.formState.errors.fuelConsumption?.message}</FormMessage>
                     </FormItem>
