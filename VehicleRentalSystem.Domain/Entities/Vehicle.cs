@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public int VehicleTypeId { get; set; }
-        public VehicleType VehicleType { get; set; } = new VehicleType();
+        public VehicleType? VehicleType { get; set; }
         public string Make { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
         public string Registration { get; set; } = string.Empty;
@@ -15,6 +15,7 @@
         public string? Description { get; set; }
         public bool Status { get; set; } = true;
         public int LocationId { get; set; }
-        public Location Location { get; set; } = new Location();
+        public Location? Location { get; set; }
+        public List<Reservation>? Reservations { get; set; }
     }
 }

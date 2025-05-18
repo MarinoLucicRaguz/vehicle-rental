@@ -10,7 +10,8 @@
         public string ZipCode { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
-        public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
-        public List<VehicleType> VehicleTypesAllowed { get; set;} = new List<VehicleType>();
+        public List<Vehicle>? Vehicles { get; set; }
+        public List<VehicleType>? VehicleTypesAllowed { get; set;}
+        public List<Reservation>? Reservations { get; set; }
     }
 }

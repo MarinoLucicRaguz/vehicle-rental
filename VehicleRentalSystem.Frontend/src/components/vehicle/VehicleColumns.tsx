@@ -128,8 +128,8 @@ export const VehicleColumns: ColumnDef<Vehicle>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
-      const vehicle = row.original;
+    cell: () => {
+      // const vehicle = row.original;
 
       return (
         <DropdownMenu>

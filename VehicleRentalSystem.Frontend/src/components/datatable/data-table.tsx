@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                     checked={column.getIsVisible()}
                     onCheckedChange={value => column.toggleVisibility(!!value)}
                   >
-                    {(column.columnDef.meta?.displayName as string) ?? column.id}
+                    {(column.columnDef.meta as { displayName?: string })?.displayName ?? column.id}{" "}
                   </DropdownMenuCheckboxItem>
                 );
               })}

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const vehicleSchema = z.object({
-  vehicleType: z.string().nonempty("Tip vozila je obavezan."),
+  vehicleTypeId: z.coerce.number({ message: "Tip vozila je obavezan" }).int(),
   registration: z.string().nonempty("Registracija je obavezna."),
   make: z.string().optional(),
   model: z.string().optional(),

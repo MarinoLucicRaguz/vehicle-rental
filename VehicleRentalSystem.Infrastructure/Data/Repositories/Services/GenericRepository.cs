@@ -33,7 +33,15 @@ namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Services
 
         public async Task<T> CreateAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            _context.ChangeTracker.TrackGraph(entity, node =>
+            {
+                var entry = node.Entry;
+                if (entry.Properties.Any(p => p.Metadata.IsPrimaryKey() && p.CurrentValue is int id && id > 0))
+                    entry.State = EntityState.Unchanged;
+                else
+                    entry.State = EntityState.Added;
+            });
+
             await _context.SaveChangesAsync();
             return entity;
         }

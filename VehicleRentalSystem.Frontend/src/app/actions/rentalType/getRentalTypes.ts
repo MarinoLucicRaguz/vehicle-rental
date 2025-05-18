@@ -8,7 +8,7 @@ export async function getAllRentalTypes(): Promise<ServiceResponse<RentalType[]>
   try {
     const response = await rentalTypeService.getAll();
     return response;
-  } catch (error) {
+  } catch {
     return { success: false, message: "Dogodila se pogreška. Molimo vas osvježite stranicu.", statusCode: 500, data: [] };
   }
 }

@@ -1,2 +1,4 @@
-dotnet ef migrations add AddedRentalTypes --project .\VehicleRentalSystem.Infrastructure\ --startup-project .\VehicleRentalSystem.WebApi\
+dotnet ef migrations add ReservationTable --project .\VehicleRentalSystem.Infrastructure\ --startup-project .\VehicleRentalSystem.WebApi\
+
+
 dotnet ef database update --project .\VehicleRentalSystem.Infrastructure\ --startup-project .\VehicleRentalSystem.WebApi\

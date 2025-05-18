@@ -14,6 +14,19 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
+      "max-len": ["warn", { code: 150, ignoreStrings: true, ignoreTemplateLiterals: true }],
+      "react/jsx-wrap-multilines": [
+        "warn",
+        {
+          declaration: "parens-new-line",
+          assignment: "parens-new-line",
+          return: "parens-new-line",
+          arrow: "parens-new-line",
+          condition: "parens-new-line",
+          logical: "parens-new-line",
+          prop: "ignore",
+        },
+      ],
     },
   },
 ];

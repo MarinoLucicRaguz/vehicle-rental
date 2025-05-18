@@ -16,6 +16,7 @@ namespace VehicleRentalSystem.Application
             services.AddScoped<IVehicleTypeService, VehicleTypeService>();
             services.AddScoped<IRentalTypeService, RentalTypeService>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<IReservationService, ReservationService>();
             services.AddAutoMapper(typeof(VehicleProfile).Assembly);
             services.AddAutoMapper(typeof(LocationProfile).Assembly);
 

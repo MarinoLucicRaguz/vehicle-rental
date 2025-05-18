@@ -121,8 +121,8 @@ export const LocationColumns: ColumnDef<Location>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
-      const location = row.original;
+    cell: () => {
+      // const location = row.original;
 
       return (
         <DropdownMenu>
@@ -134,7 +134,7 @@ export const LocationColumns: ColumnDef<Location>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Akcije</DropdownMenuLabel>
-            {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(vehicle.Id)}>Copy vehicle ID</DropdownMenuItem> */}
+            {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(location.id.toString())}>Kopiraj id lokacije</DropdownMenuItem> */}
             <DropdownMenuSeparator />
             <DropdownMenuItem>Pogledaj detalje</DropdownMenuItem>
             <DropdownMenuItem>Uredi lokaciju</DropdownMenuItem>

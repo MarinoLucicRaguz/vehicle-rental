@@ -1,13 +1,13 @@
+import { getAllLocations } from "@/app/actions/location/getLocations";
+import { getAllVehicleTypes } from "@/app/actions/vehicleType/getVehicleTypes";
 import { VehicleAddForm } from "@/components/vehicle/VehicleAddForm";
-import { locationService } from "@/services/locationService";
-import { Location } from "@/types/LocationTypes";
 
 export default async function Page() {
-  const resp = await locationService.getAll();
-  const locations: Location[] = Array.isArray(resp.data) ? resp.data : [];
+  const locations = await getAllLocations();
+  const vehicleTypes = await getAllVehicleTypes();
   return (
     <div className="w-full max-w-sm ml-auto mr-auto">
-      <VehicleAddForm locations={locations} />;
+      <VehicleAddForm vehicleTypes={vehicleTypes.data || []} locations={locations.data || []} />;
     </div>
   );
 }

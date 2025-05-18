@@ -140,6 +140,21 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.ToTable("VehicleTypeRentalType", (string)null);
                 });
 
+            modelBuilder.Entity("ReservationVehicle", b =>
+                {
+                    b.Property<int>("ReservationsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("VehiclesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ReservationsId", "VehiclesId");
+
+                    b.HasIndex("VehiclesId");
+
+                    b.ToTable("ReservationVehicle", (string)null);
+                });
+
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Location", b =>
                 {
                     b.Property<int>("Id")
@@ -221,6 +236,77 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RentalTypes");
+                });
+
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BookingNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ContactName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Deposit")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Payed")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RentalTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("RentalTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Role", b =>
@@ -477,6 +563,48 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ReservationVehicle", b =>
+                {
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.Reservation", null)
+                        .WithMany()
+                        .HasForeignKey("ReservationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.Vehicle", null)
+                        .WithMany()
+                        .HasForeignKey("VehiclesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Reservation", b =>
+                {
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.Location", "Location")
+                        .WithMany("Reservations")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.RentalType", "RentalType")
+                        .WithMany("Reservations")
+                        .HasForeignKey("RentalTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VehicleRentalSystem.Domain.Entities.User", "User")
+                        .WithMany("Reservations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+
+                    b.Navigation("RentalType");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.User", b =>
                 {
                     b.HasOne("VehicleRentalSystem.Domain.Entities.Role", "Role")
@@ -516,14 +644,26 @@ namespace VehicleRentalSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Location", b =>
                 {
+                    b.Navigation("Reservations");
+
                     b.Navigation("VehicleTypesAllowed");
 
                     b.Navigation("Vehicles");
                 });
 
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.RentalType", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
             modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("VehicleRentalSystem.Domain.Entities.User", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }
