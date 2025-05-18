@@ -20,11 +20,11 @@ namespace VehicleRentalSystem.Domain.Entities
         public string? ContactEmail { get; set; }
         public string Notes { get; set; } = string.Empty;
         public int UserId { get; set; }
-        public User User { get; set; } = new User();
+        public User? User { get; set; }
         public int RentalTypeId { get; set; }
-        public RentalType RentalType { get; set; } = new RentalType();
-        public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        public RentalType? RentalType { get; set; }
+        public List<Vehicle>? Vehicles { get; set; }
         public int LocationId { get; set; }
-        public Location Location { get; set; } = new Location();
+        public Location? Location { get; set; }
     }
 }

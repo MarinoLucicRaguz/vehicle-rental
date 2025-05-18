@@ -1,5 +1,4 @@
-﻿using VehicleRentalSystem.Domain.Entities;
-using VehicleRentalSystem.Domain.Enums;
+﻿using VehicleRentalSystem.Domain.Enums;
 
 namespace VehicleRentalSystem.Application.DTOs.Reservations
 {

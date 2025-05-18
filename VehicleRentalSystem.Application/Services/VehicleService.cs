@@ -42,8 +42,6 @@ namespace VehicleRentalSystem.Application.Services
                 return ApiResponse.Failure<int>("Tip vozila nije pronađen.");
 
             var mappedVehicle = _mapper.Map<Vehicle>(vehicle);
-            mappedVehicle.Location = location;
-            mappedVehicle.VehicleType = typeEntity;
 
             var createdVehicle = await _genericRepo.CreateAsync(mappedVehicle);
 

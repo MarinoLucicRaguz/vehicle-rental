@@ -13,7 +13,7 @@
         public bool IsActive { get; set; } = true;
         public bool FuelIncluded { get; set; } = false;
         public int? MaxPassengers { get; set; } = null;
-        public List<VehicleType> AvailableVehicleType { get; set; } = new List<VehicleType>();
-        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public List<VehicleType>? AvailableVehicleType { get; set; }
+        public List<Reservation>? Reservations { get; set; }
     }
 }

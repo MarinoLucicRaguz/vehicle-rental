@@ -9,7 +9,6 @@ namespace VehicleRentalSystem.Application.Mappings
         public VehicleProfile()
         {
             CreateMap<CreateVehicleDTO, Vehicle>();
-                //.ForMember(dest => dest.VehicleType, opt => opt.Ignore());
         }
     }
 }
