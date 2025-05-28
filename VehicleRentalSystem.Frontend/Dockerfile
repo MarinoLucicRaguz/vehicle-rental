@@ -1,5 +1,6 @@
 FROM node:22-alpine AS deps
 WORKDIR /app
+
 COPY VehicleRentalSystem.Frontend/package*.json ./
 
 ENV NPM_CONFIG_LEGACY_PEER_DEPS=true

@@ -2,42 +2,48 @@ version: "3.9"
 
 services:
   db:
-    image: postgres:16-alpine
+    image: postgres:latest
     container_name: vehiclerental_db
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: vehiclerental
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: RentalSystemDocker
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "6543:5432"
 
   backend:
+    container_name: vehiclerental_backend
     build:
       context: .
       dockerfile: VehicleRentalSystem.WebApi/Dockerfile
     depends_on:
       - db
     environment:
-      # Same key you use in appsettings.json → "ConnectionStrings:Default"
-      ConnectionStrings__Default: "Host=db;Port=5432;Database=vehiclerental;Username=postgres;Password=postgres"
+      ConnectionStrings__DefaultConnection: >
+        Host=db;Port=5432;Database=RentalSystemDocker;
+        User Id=postgres;Password=1234;
       ASPNETCORE_ENVIRONMENT: Production
     ports:
       - "5000:8080"
 
   frontend:
+    container_name: vehiclerental_frontend
     build:
       context: .
       dockerfile: VehicleRentalSystem.Frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://backend:8080
+        NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    environment:
+      SERVER_API_BASE_URL: http://backend:8080
+      NODE_TLS_REJECT_UNAUTHORIZED: "0"
     depends_on:
       - backend
-    environment:
-      # Adjust if you front your API with a reverse-proxy
-      NEXT_PUBLIC_API_BASE_URL: "http://localhost:5000"
     ports:
-      - "3000:8080"
+      - "8080:3000"
 
 volumes:
   postgres-data:
