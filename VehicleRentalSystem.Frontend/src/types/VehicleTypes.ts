@@ -11,3 +11,8 @@ export interface Vehicle {
   description: number | null;
   status: boolean;
 }
+
+export interface VehicleAvailablePeriodDTO {
+  startTime: Date;
+  endTime: Date;
+}

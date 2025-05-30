@@ -1,53 +1,51 @@
-import { cookies } from "next/headers";
-
 export type RequestMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export interface RequestOptions extends Omit<RequestInit, "body"> {
   body?: any;
 }
 
-const BASE_URL = process.env.API;
+const BASE_URL = process.env.SERVER_API_BASE_URL || process.env.NEXT_PUBLIC_SERVER_API_BASE_URL;
 
 const defaultHeaders: HeadersInit = {
   "Content-Type": "application/json",
 };
 
-export const apiClient = async <T = any>(endpoint: string, method: RequestMethod, options: RequestOptions = {}): Promise<T> => {
+export const apiClient = async <T = any>(endpoint: string, method: RequestMethod = "GET", options: RequestOptions = {}): Promise<T> => {
+  const headers: Record<string, string> = {
+    ...defaultHeaders,
+    ...((options.headers as Record<string, string>) ?? {}),
+  };
+
   if (!BASE_URL) {
     throw new Error("API base URL is not defined in env.");
   }
 
-  const url = `${BASE_URL}${endpoint}`;
-  const token = (await cookies()).get("token")?.value || "";
-  const headers: HeadersInit = {
-    ...defaultHeaders,
-    ...(options.headers || {}),
-    Authorization: `Bearer ${token}`,
-  };
-
-  let computedBody: BodyInit | undefined;
-  if (options.body) {
-    computedBody = typeof options.body === "string" ? options.body : JSON.stringify(options.body);
+  if (typeof window === "undefined") {
+    try {
+      const { getServerToken } = await import("./getServerToken");
+      const token = await getServerToken();
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+    } catch {}
   }
 
-  const fetchOptions: RequestInit = {
-    method,
-    headers,
-    ...options,
-    body: computedBody,
-  };
-
   try {
-    const response = await fetch(url, fetchOptions);
-    if (!response.ok) {
-      const errorjson = await response.json();
-      return errorjson;
-    }
-    const text = await response.text();
-    return text ? (JSON.parse(text) as T) : ({} as T);
-  } catch (error) {
-    // console.error("apiClient error:", error);
-    throw error;
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+      method,
+      credentials: "include",
+      ...options,
+      headers,
+      body: options.body && method !== "GET" ? (typeof options.body === "string" ? options.body : JSON.stringify(options.body)) : undefined,
+    });
+
+    if (!res.ok) throw new Error(await res.text());
+    const data = res.headers.get("content-type")?.includes("application/json") ? await res.json() : await res.text();
+
+    return (data ?? {}) as T;
+  } catch (err) {
+    console.error("apiClient network error", err);
+    throw err;
   }
 };
 

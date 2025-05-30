@@ -9,7 +9,9 @@ namespace VehicleRentalSystem.Application.Interfaces
         Task<ServiceResponse<int>> CreateVehicleAsync(CreateVehicleDTO vehicle);
         //Task<ServiceResponse<VehicleDTO>> GetVehicleByIdAsync(int id);
         Task<ServiceResponse<List<Vehicle>>> GetAllVehiclesAsync();
+
         //Task<ServiceResponse<bool>> UpdateVehicleAsync(int id, UpdateVehicleDTO vehicle);
         Task<ServiceResponse<bool>> DeleteVehicleAsync(int id);
+        Task<ServiceResponse<List<Vehicle>>> GetAvailableVehiclesInPeriodAsync(DateTime startTime, DateTime endTime);
     }
 }

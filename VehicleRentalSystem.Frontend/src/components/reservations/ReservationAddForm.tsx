@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
@@ -21,10 +21,10 @@ import { useWatch } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { EnumOptionsDTO } from "@/types/EnumTypes";
+import { vehicleService } from "@/services/vehicleService";
 
 export interface ReservationAddProps extends React.ComponentPropsWithoutRef<"div"> {
   locations: Location[];
-  vehicles: Vehicle[];
   rentalTypes: RentalType[];
   paymentOptions: EnumOptionsDTO[];
   reservationStatuses: EnumOptionsDTO[];
@@ -51,21 +51,16 @@ function calculateEndTime(start: Date, rentalType: RentalType): Date {
   return end;
 }
 
-export function ReservationAddForm({
-  locations,
-  vehicles,
-  rentalTypes,
-  paymentOptions,
-  reservationStatuses,
-  className,
-  ...props
-}: ReservationAddProps) {
+export function ReservationAddForm({ locations, rentalTypes, paymentOptions, reservationStatuses, className, ...props }: ReservationAddProps) {
   const { form, onSubmit, serverError } = useReservationForm();
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+
   const router = useRouter();
 
   const reservationDate = useWatch({ control: form.control, name: "reservationDate" });
   const startTime = useWatch({ control: form.control, name: "startTime" });
   const rentalTypeId = useWatch({ control: form.control, name: "rentalTypeId" });
+  const endTime = useWatch({ control: form.control, name: "endTime" });
 
   useEffect(() => {
     if (!startTime || !rentalTypeId) return;
@@ -89,6 +84,20 @@ export function ReservationAddForm({
       form.setValue("endTime", newEnd, { shouldValidate: false, shouldDirty: true });
     }
   }, [reservationDate, startTime, rentalTypeId, rentalTypes, form]);
+
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      try {
+        const data = { startTime: form.getValues("startTime"), endTime: form.getValues("endTime") };
+        const availableVehicles = await vehicleService.getAvailableInPeriod(data);
+        setVehicles(availableVehicles.data ?? []);
+      } catch (error) {
+        //nesto s errorom
+      }
+    };
+
+    fetchVehicles();
+  }, [startTime, endTime]);
 
   const vehicleSummary = (ids: number[]): string => {
     if (!ids || ids.length === 0) return "Odaberite vozila";

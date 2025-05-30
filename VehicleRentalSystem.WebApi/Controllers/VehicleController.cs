@@ -32,5 +32,13 @@ namespace VehicleRentalSystem.WebApi.Controllers
             var result = await _vehicleService.GetAllVehiclesAsync();
             return HandleResponse(result);
         }
+
+        [HttpGet]
+        [Route(nameof(GetAvailableVehicleInPeriod))]
+        public async Task<IActionResult> GetAvailableVehicleInPeriod([FromQuery] VehicleAvailablePeriodDTO period)
+        {
+            var result = await _vehicleService.GetAvailableVehiclesInPeriodAsync(period.StartTime, period.EndTime);
+            return HandleResponse(result);
+        }
     }
 }

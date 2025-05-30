@@ -16,6 +16,7 @@ namespace VehicleRentalSystem.Infrastructure
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
        

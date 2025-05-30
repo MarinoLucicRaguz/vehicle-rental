@@ -15,15 +15,17 @@ namespace VehicleRentalSystem.Application.Services
         private readonly IGenericRepository<Location> _locationRepository;
         private readonly IGenericRepository<VehicleType> _vehicleTypeRepository;
         private readonly IVehicleRepository _vehicleRepository;
+        private readonly IReservationRepository _reservationRepository;
         private readonly IMapper _mapper;
 
-        public VehicleService(IGenericRepository<Vehicle> genericRepo, IVehicleRepository vehicleRepository, IMapper mapper, IGenericRepository<Location> locationRepository, IGenericRepository<VehicleType> vehicleTypeRepository)
+        public VehicleService(IGenericRepository<Vehicle> genericRepo, IReservationRepository reservationRepository, IVehicleRepository vehicleRepository, IMapper mapper, IGenericRepository<Location> locationRepository, IGenericRepository<VehicleType> vehicleTypeRepository)
         {
+            _mapper = mapper;
             _genericRepo = genericRepo;
             _vehicleRepository = vehicleRepository;
-            _mapper = mapper;
             _locationRepository = locationRepository;
             _vehicleTypeRepository = vehicleTypeRepository;
+            _reservationRepository = reservationRepository;
         }
 
         public async Task<ServiceResponse<int>> CreateVehicleAsync(CreateVehicleDTO vehicle)
@@ -56,6 +58,22 @@ namespace VehicleRentalSystem.Application.Services
                 return ApiResponse.Failure<List<Vehicle>>("Pogreška prilikom dohvaćanja vozila.");
 
             return ApiResponse.Success(vehicles, "Uspješno dohvaćena vozila.");
+        }
+
+        public async Task<ServiceResponse<List<Vehicle>>> GetAvailableVehiclesInPeriodAsync(DateTime startTime, DateTime endTime)
+        {
+            var vehicles = await _genericRepo.GetAllAsync();
+
+            var reservation = await _reservationRepository.GetReservationsInPeriod(startTime, endTime);
+
+            if (reservation == null || reservation.Count == 0)
+                return ApiResponse.Success(vehicles, "Nema rezervacija u zadanom periodu.");
+
+            var reservedVehicleIds = reservation.SelectMany(r => r.Vehicles ?? new List<Vehicle>()).Select(v => v.Id).ToHashSet();
+
+            var availableVehicles = vehicles.Where(v => !reservedVehicleIds.Contains(v.Id)).ToList();
+
+            return ApiResponse.Success(availableVehicles, "Uspješno dohvaćena vozila.");
         }
 
         public Task<ServiceResponse<bool>> DeleteVehicleAsync(int id)

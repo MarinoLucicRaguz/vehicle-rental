@@ -29,6 +29,13 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddCors(p => p.AddPolicy("front", pol =>
+    pol.WithOrigins("http://localhost:8080")   
+       .AllowAnyHeader()
+       .AllowAnyMethod()
+       .AllowCredentials()
+));
+
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(options =>
 {
@@ -47,6 +54,20 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = ctx =>
+        {
+            if (string.IsNullOrEmpty(ctx.Token))
+            {
+                var cookie = ctx.Request.Cookies["token"];
+                if (!string.IsNullOrEmpty(cookie))
+                    ctx.Token = cookie;
+            }
+            return Task.CompletedTask;
+        }
+    };
 });
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -54,6 +75,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+app.UseCors("front");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
