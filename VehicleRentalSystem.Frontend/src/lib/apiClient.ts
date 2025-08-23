@@ -6,7 +6,7 @@ export interface RequestOptions extends Omit<RequestInit, "body"> {
   body?: any;
 }
 
-const BASE_URL = process.env.API;
+const BASE_URL = process.env.API || process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const defaultHeaders: HeadersInit = {
   "Content-Type": "application/json",

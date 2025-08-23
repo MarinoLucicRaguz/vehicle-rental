@@ -15,27 +15,27 @@ services:
       - "5432:5432"
 
   backend:
+    container_name: VehicleRentalSystem.Backend
     build:
       context: .
       dockerfile: VehicleRentalSystem.WebApi/Dockerfile
     depends_on:
       - db
     environment:
-      # Same key you use in appsettings.json → "ConnectionStrings:Default"
       ConnectionStrings__Default: "Host=db;Port=5432;Database=vehiclerental;Username=postgres;Password=postgres"
       ASPNETCORE_ENVIRONMENT: Production
     ports:
       - "5000:8080"
 
   frontend:
+    container_name: VehicleRentalSystem.Frontend
     build:
       context: .
       dockerfile: VehicleRentalSystem.Frontend/Dockerfile
     depends_on:
       - backend
     environment:
-      # Adjust if you front your API with a reverse-proxy
-      NEXT_PUBLIC_API_BASE_URL: "http://localhost:5000"
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:5000
     ports:
       - "3000:8080"
 
