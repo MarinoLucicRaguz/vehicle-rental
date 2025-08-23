@@ -52,6 +52,13 @@ builder.Services.AddAuthentication(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+const string AllowFe = "allow-fe";
+builder.Services.AddCors(o => o.AddPolicy(AllowFe, p =>
+    p.WithOrigins("http://localhost:9300")
+     .AllowAnyHeader()
+     .AllowAnyMethod()
+    .AllowCredentials()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -65,8 +72,8 @@ if (app.Environment.IsDevelopment())
     };
     var httpClient = new HttpClient(httpClientHandler);
 }
-
-app.UseHttpsRedirection();
+app.UseCors(AllowFe);                  // <-- before auth
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

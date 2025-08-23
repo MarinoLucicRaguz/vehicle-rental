@@ -6,7 +6,7 @@ export interface RequestOptions extends Omit<RequestInit, "body"> {
   body?: any;
 }
 
-const BASE_URL = process.env.API || process.env.NEXT_PUBLIC_API_BASE_URL;
+const BASE_URL = typeof window === "undefined" ? process.env.SERVER_API_BASE_URL! : process.env.API!;
 
 const defaultHeaders: HeadersInit = {
   "Content-Type": "application/json",
@@ -16,7 +16,6 @@ export const apiClient = async <T = any>(endpoint: string, method: RequestMethod
   if (!BASE_URL) {
     throw new Error("API base URL is not defined in env.");
   }
-
   const url = `${BASE_URL}${endpoint}`;
   const token = (await cookies()).get("token")?.value || "";
   const headers: HeadersInit = {
