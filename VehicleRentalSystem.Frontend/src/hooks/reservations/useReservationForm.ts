@@ -26,6 +26,7 @@ export function useReservationForm(onSuccess?: () => void) {
       rentalTypeId: undefined,
       userId: 1,
       locationId: undefined,
+      locationName: "",
       vehicleIds: [],
     },
   });

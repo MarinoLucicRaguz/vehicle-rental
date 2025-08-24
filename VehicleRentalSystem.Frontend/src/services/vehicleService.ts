@@ -11,9 +11,7 @@ export const vehicleService = {
   async getAll(): Promise<ServiceResponse<Vehicle[]>> {
     return await get<ServiceResponse<Vehicle[]>>("/api/vehicle");
   },
-
   async getAvailableInPeriod(period: VehicleAvailablePeriodDTO): Promise<ServiceResponse<Vehicle[]>> {
-    const qs = new URLSearchParams({ startTime: period.startTime.toISOString(), endTime: period.endTime.toISOString() }).toString();
-    return await get<ServiceResponse<Vehicle[]>>(`/api/vehicle/GetAvailableVehicleInPeriod?${qs}`);
+    return await post<ServiceResponse<Vehicle[]>>("/api/vehicle/GetAvailableVehicleInPeriod", period);
   },
 };

@@ -31,5 +31,12 @@ namespace VehicleRentalSystem.WebApi.Controllers
             var result = await _reservationService.CreateReservation(reservationDto);
             return HandleResponse(result);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteReservation([FromQuery] int id)
+        {
+            var result = await _reservationService.DeleteReservation(id);
+            return HandleResponse(result);
+        }
     }
 }

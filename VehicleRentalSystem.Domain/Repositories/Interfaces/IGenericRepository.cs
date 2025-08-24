@@ -1,4 +1,6 @@
-﻿namespace VehicleRentalSystem.Domain.Repositories.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace VehicleRentalSystem.Domain.Repositories.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -7,5 +9,7 @@
         Task<T> CreateAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(int id);
+        Task<int> CountAsync();
+        Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
     }
 }

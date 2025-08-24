@@ -27,7 +27,9 @@ export const apiClient = async <T = any>(endpoint: string, method: RequestMethod
       if (token) {
         headers.Authorization = `Bearer ${token}`;
       }
-    } catch {}
+    } catch {
+      console.log("Issue while detecting client or serverside call.")
+    }
   }
 
   try {

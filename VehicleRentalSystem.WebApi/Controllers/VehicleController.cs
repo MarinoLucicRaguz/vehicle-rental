@@ -33,9 +33,9 @@ namespace VehicleRentalSystem.WebApi.Controllers
             return HandleResponse(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetAvailableVehicleInPeriod))]
-        public async Task<IActionResult> GetAvailableVehicleInPeriod([FromQuery] VehicleAvailablePeriodDTO period)
+        public async Task<IActionResult> GetAvailableVehicleInPeriod(VehicleAvailablePeriodDTO period)
         {
             var result = await _vehicleService.GetAvailableVehiclesInPeriodAsync(period.StartTime, period.EndTime);
             return HandleResponse(result);

@@ -21,5 +21,6 @@ namespace VehicleRentalSystem.Application.DTOs.Reservations
         public int RentalTypeId { get; set; }
         public List<int> VehicleIds { get; set; } = new List<int>();
         public int LocationId { get; set; }
+        public string? LocationName { get; set; }
     }
 }

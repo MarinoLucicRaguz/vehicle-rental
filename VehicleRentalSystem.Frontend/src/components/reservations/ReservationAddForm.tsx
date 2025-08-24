@@ -60,7 +60,8 @@ export function ReservationAddForm({ locations, rentalTypes, paymentOptions, res
   const reservationDate = useWatch({ control: form.control, name: "reservationDate" });
   const startTime = useWatch({ control: form.control, name: "startTime" });
   const rentalTypeId = useWatch({ control: form.control, name: "rentalTypeId" });
-  const endTime = useWatch({ control: form.control, name: "endTime" });
+  const discount = useWatch({ control: form.control, name: "discount" });
+  const selectedVehicles = useWatch({ control: form.control, name: "vehicleIds" });
 
   useEffect(() => {
     if (!startTime || !rentalTypeId) return;
@@ -79,25 +80,34 @@ export function ReservationAddForm({ locations, rentalTypes, paymentOptions, res
     if (!prevStart || new Date(prevStart).getTime() !== mergedStart.getTime()) {
       form.setValue("startTime", mergedStart, { shouldValidate: false, shouldDirty: true });
     }
+
     const prevEnd = form.getValues("endTime");
     if (!prevEnd || new Date(prevEnd).getTime() !== newEnd.getTime()) {
       form.setValue("endTime", newEnd, { shouldValidate: false, shouldDirty: true });
     }
-  }, [reservationDate, startTime, rentalTypeId, rentalTypes, form]);
+
+    if (!prevStart || new Date(prevStart).getTime() !== mergedStart.getTime() || !prevEnd || new Date(prevEnd).getTime() !== newEnd.getTime()) {
+      const fetchVehicles = async () => {
+        try {
+          const data = { startTime: mergedStart, endTime: newEnd };
+          const availableVehicles = await vehicleService.getAvailableInPeriod(data);
+          setVehicles(availableVehicles.data ?? []);
+        } catch (err) {
+          console.error("Failed to fetch vehicles", err);
+        }
+      };
+      fetchVehicles();
+    }
+  }, [form, reservationDate, startTime, rentalTypeId, rentalTypes]);
 
   useEffect(() => {
-    const fetchVehicles = async () => {
-      try {
-        const data = { startTime: form.getValues("startTime"), endTime: form.getValues("endTime") };
-        const availableVehicles = await vehicleService.getAvailableInPeriod(data);
-        setVehicles(availableVehicles.data ?? []);
-      } catch (error) {
-        //nesto s errorom
-      }
-    };
+    const rentalType = rentalTypes.find(rt => rt.id === Number(rentalTypeId));
+    if (!rentalType) return;
 
-    fetchVehicles();
-  }, [startTime, endTime]);
+    const totalCost = rentalType.price * selectedVehicles.length * ((100 - discount) / 100);
+
+    form.setValue("totalPrice", totalCost);
+  }, [form, vehicles, rentalTypeId, rentalTypes, discount, selectedVehicles]);
 
   const vehicleSummary = (ids: number[]): string => {
     if (!ids || ids.length === 0) return "Odaberite vozila";
@@ -211,7 +221,21 @@ export function ReservationAddForm({ locations, rentalTypes, paymentOptions, res
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Lokacija</FormLabel>
-                    <Select value={field.value ? field.value.toString() : ""} onValueChange={val => field.onChange(Number(val))}>
+                    <Select
+                      value={field.value ? field.value.toString() : ""}
+                      onValueChange={val => {
+                        const id = Number(val);
+                        field.onChange(id);
+                        const selectedLoc = locations.find(l => l.id === id);
+                        if (selectedLoc) {
+                          form.setValue("locationName", selectedLoc.name, {
+                            shouldValidate: false,
+                            shouldDirty: true,
+                          });
+                        }
+                      }}
+                    >
+                      {" "}
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Odaberite lokaciju" />
@@ -293,7 +317,7 @@ export function ReservationAddForm({ locations, rentalTypes, paymentOptions, res
                     <FormItem>
                       <FormLabel>Ukupna cijena</FormLabel>
                       <FormControl>
-                        <Input type="number" {...field} value={field.value ?? ""} />
+                        <Input disabled type="number" {...field} value={field.value ?? ""} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

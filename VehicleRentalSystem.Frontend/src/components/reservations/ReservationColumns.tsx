@@ -143,21 +143,26 @@ export const ReservationColumns: ColumnDef<Reservation>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: () => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <span className="sr-only">Otvori meni</span>
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Akcije</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Prikaži detalje</DropdownMenuItem>
-          <DropdownMenuItem>Uredi rezervaciju</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
+    cell: ({row}) => {
+      const reservation = row.original;
+      console.log(reservation)
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Otvori meni</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Akcije</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Prikaži detalje</DropdownMenuItem>
+            <DropdownMenuItem>Uredi rezervaciju</DropdownMenuItem>
+            <DropdownMenuItem>Izbriši rezervaciju</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
   },
 ];

@@ -24,21 +24,56 @@ namespace VehicleRentalSystem.Application.Services
         {
             Reservation reservation = _mapper.Map<Reservation>(reservationDto);
 
-            var result =  await _genericRepository.CreateAsync(reservation);
+            string bookingNumber = await GenerateUniqueSifra(reservationDto.LocationName ?? "");
+            reservation.BookingNumber = bookingNumber;
+            var result = await _genericRepository.CreateAsync(reservation);
 
-            return ApiResponse.Created<Reservation>(result, "Uspješno kreirana rezervacija.");
+            return ApiResponse.Created(result, "Uspješno kreirana rezervacija.");
+        }
+
+        private async Task<string> GenerateUniqueSifra(string location)
+        {
+            var prefix = new string(location.Take(3).ToArray()).ToUpper().PadRight(3, 'X');
+            var timestamp = DateTime.UtcNow.ToString("yyMMddHHmmss");
+            var timePart = timestamp.Substring(4, 4);
+
+            var count = await _genericRepository.CountAsync() + 1;
+            var countPart = (count % 1000).ToString("D3");
+
+            var code = $"{prefix}{timePart}{countPart}";
+
+            bool exists = await _genericRepository.ExistsAsync(r => r.BookingNumber == code);
+            if (exists)
+            {
+                var rnd = new Random().Next(100, 999).ToString();
+                code = $"{prefix}{timePart.Substring(0, 2)}{rnd}";
+            }
+
+            return code.Substring(0, 10);
         }
 
         public async Task<ServiceResponse<bool>> DeleteReservation(int id)
         {
-            //return await _genericRepository.DeleteAsync(id);
-            throw new NotImplementedException();
+            var reservation = await _genericRepository.GetByIdAsync(id);
+
+            if (reservation == null)
+            {
+                return ApiResponse.Failure<bool>("Nije pronađena rezervacija.");
+            }
+
+            if (reservation.Status != Domain.Enums.ReservationStatus.Pending || reservation.Status != Domain.Enums.ReservationStatus.Confirmed)
+            {
+                var odgovor = await _genericRepository.DeleteAsync(id);
+                return ApiResponse.Success(odgovor, "Uspješno izbrisana rezervacija.");
+            }
+
+            return ApiResponse.Failure<bool>("Rezervacija se ne može izbrisati zbog svog statusa.");
         }
 
         public async Task<ServiceResponse<List<Reservation>>> GetAllReservations()
         {
             var reservations = await _genericRepository.GetAllAsync(r => r.Include(x => x.Vehicles).Include(x => x.Location).Include(x => x.RentalType));
-            return ApiResponse.Created<List<Reservation>>(reservations, "Uspješno dohvaćene rezervacije.");
+            return ApiResponse.Created(reservations, "Uspješno dohvaćene rezervacije.");
         }
 
         public async Task<ServiceResponse<Reservation?>> GetReservationById(int id)

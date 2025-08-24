@@ -14,8 +14,11 @@ namespace VehicleRentalSystem.Infrastructure.Data.Repositories.Services
         }
 
         public async Task<List<Reservation>> GetReservationsInPeriod(DateTime startTime, DateTime endTime)
-        { 
-            return await _context.Reservations.Where(r => r.StartTime >= startTime && r.EndTime <= endTime).ToListAsync();
+        {
+            return await _context.Reservations
+                .Where(r => r.StartTime < endTime && r.EndTime > startTime)
+                .Include(r => r.Vehicles)
+                .ToListAsync();
         }
     }
 }
